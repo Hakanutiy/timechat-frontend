@@ -1,0 +1,66 @@
+module.exports = {
+  root: true,
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 2020,
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
+  env: {
+    browser: true,
+    amd: true,
+    node: true,
+  },
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react/recommended',
+    'plugin:jsx-a11y/recommended',
+    'prettier',
+    'plugin:prettier/recommended', // Make sure this is always the last element in the array.
+  ],
+  plugins: ['simple-import-sort', 'prettier'],
+  rules: {
+    'react/jsx-uses-react': 'off',
+    'react/react-in-jsx-scope': 'off',
+    'simple-import-sort': 'off',
+    'no-useless-catch': 'off',
+    'prettier/prettier': ['error', {}, { usePrettierrc: true }],
+    'jsx-a11y/accessible-emoji': 'off',
+    'react/prop-types': 'off',
+    'react/display-name': 'off',
+    'no-unused-vars': 'off',
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/no-empty-interface': 0,
+    '@typescript-eslint/no-unused-vars': [
+      'warn',
+      { args: 'after-used', argsIgnorePattern: '^_' },
+    ],
+    'simple-import-sort/imports': 'error',
+    'simple-import-sort/exports': 'error',
+    'jsx-a11y/anchor-is-valid': [
+      'error',
+      {
+        components: ['Link'],
+        specialLink: ['hrefLeft', 'hrefRight'],
+        aspects: ['invalidHref', 'preferButton'],
+      },
+    ],
+  },
+  overrides: [
+    {
+      files: ['*.ts'],
+      rules: {
+        'no-undef': 'off',
+      },
+    },
+  ],
+}
