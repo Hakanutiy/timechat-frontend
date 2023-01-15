@@ -1,9 +1,0 @@
-ignore
-62 bytes
-node_modules
-.DS_Store
-.idea
-.idea/*
-build
-**/dist/**
-*.local
