@@ -5,10 +5,11 @@
   "main": "index.js",
   "devDependencies": {
     "@commitlint/cli": "^17.4.2",
+    "cz-customizable": "^7.0.0",
     "husky": "^8.0.3"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "commit": "git cz"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,14 @@
     "url": "https://github.com/DaniilKimlb/TimeChat/issues"
   },
   "homepage": "https://github.com/DaniilKimlb/TimeChat#readme",
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": "config/git/commitizen.js"
+    }
+  },
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS -g './config/git/commitlint.js'"
