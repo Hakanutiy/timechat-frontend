@@ -7,9 +7,9 @@ export const DialogNavBar = () => {
 
         <div className="flex h-20 mt-8 w-full pr-3">
           <img
+            alt="profileimg"
             src="https://readd.org/wp-content/uploads/2019/05/screenshot-2017-05-19-001-3.jpg"
-            className="rounded-full w-16 h-16"
-          ></img>
+            className="rounded-full w-16 h-16"></img>
           <div>
             <p className="pl-3.5 font-semibold  text-sm h-4">Чингиз Хан</p>
             <p className="pt-2 pl-3 truncate-1 ">ссоре мужик так нужно было</p>
@@ -25,9 +25,9 @@ export const DialogNavBar = () => {
 
         <div className="flex h-20 mt-2 pr-4">
           <img
+            alt="profileimg"
             src="https://readd.org/wp-content/uploads/2019/05/screenshot-2017-05-19-001-3.jpg"
-            className="rounded-full w-16 h-16"
-          ></img>
+            className="rounded-full w-16 h-16"></img>
           <div>
             <p className="pl-3.5 font-semibold text-sm h-4">Мгыдрчан Соломон</p>
             <p className="pt-2 pl-3 truncate-1 ">addMessageActionCreation</p>
@@ -40,8 +40,7 @@ export const DialogNavBar = () => {
             height="9"
             viewBox="0 0 13 9"
             fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+            xmlns="http://www.w3.org/2000/svg">
             <path
               d="M4.60753 9C4.44101 9 4.27348 8.93711 4.14608 8.81032L0 4.68419L0.921908 3.76672L4.60753 7.43461L12.0781 0L13 0.91747L5.06798 8.81131C4.94058 8.9371 4.77406 9 4.60753 9Z"
               fill="#B9B9B9"
@@ -50,9 +49,9 @@ export const DialogNavBar = () => {
         </div>
         <div className="flex h-20 mt-2  ">
           <img
+            alt="profileimg"
             src="https://readd.org/wp-content/uploads/2019/05/screenshot-2017-05-19-001-3.jpg"
-            className="rounded-full w-16 h-16"
-          ></img>
+            className="rounded-full w-16 h-16"></img>
           <div>
             <p className="pl-3.5 font-semibold  text-sm h-4">Мгыдрчан Соломон</p>
             <p className="pt-2 pl-3 truncate-1">addMessageActionCreation</p>
@@ -65,8 +64,7 @@ export const DialogNavBar = () => {
               height="11"
               viewBox="0 0 17 11"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+              xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M12.6298 0.497606L7.27246 6.21326L8.23681 7.24211L13.5942 1.52646L12.6298 0.497606Z"
                 fill="#00ACED"
@@ -84,9 +82,9 @@ export const DialogNavBar = () => {
         </div>
         <div className="flex h-20 mt-2 pr-4 ">
           <img
+            alt="profileimg"
             src="https://readd.org/wp-content/uploads/2019/05/screenshot-2017-05-19-001-3.jpg"
-            className="rounded-full w-16 h-16"
-          ></img>
+            className="rounded-full w-16 h-16"></img>
           <div>
             <p className="pl-3.5 font-semibold  text-sm h-4">Мгыдрчан Соломон</p>
             <p className="pt-2 pl-3 truncate-1">addMessageActionCreation</p>
@@ -99,8 +97,7 @@ export const DialogNavBar = () => {
             height="9"
             viewBox="0 0 13 9"
             fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+            xmlns="http://www.w3.org/2000/svg">
             <path
               d="M4.60753 9C4.44101 9 4.27348 8.93711 4.14608 8.81032L0 4.68419L0.921908 3.76672L4.60753 7.43461L12.0781 0L13 0.91747L5.06798 8.81131C4.94058 8.9371 4.77406 9 4.60753 9Z"
               fill="#00ACED"
@@ -109,9 +106,9 @@ export const DialogNavBar = () => {
         </div>
         <div className="flex h-20 mt-2 pr-4 ">
           <img
+            alt="profileimg"
             src="https://readd.org/wp-content/uploads/2019/05/screenshot-2017-05-19-001-3.jpg"
-            className="rounded-full w-16 h-16"
-          ></img>
+            className="rounded-full w-16 h-16"></img>
           <div>
             <p className="pl-3.5 font-semibold  text-sm h-4">Мгыдрчан Соломон</p>
             <p className="pt-2 pl-3 truncate-1">addMessageActionCreation</p>
@@ -124,8 +121,7 @@ export const DialogNavBar = () => {
             height="9"
             viewBox="0 0 13 9"
             fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+            xmlns="http://www.w3.org/2000/svg">
             <path
               d="M4.60753 9C4.44101 9 4.27348 8.93711 4.14608 8.81032L0 4.68419L0.921908 3.76672L4.60753 7.43461L12.0781 0L13 0.91747L5.06798 8.81131C4.94058 8.9371 4.77406 9 4.60753 9Z"
               fill="#00ACED"
