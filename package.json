@@ -29,11 +29,6 @@
   "bugs": {
     "url": "https://github.com/DaniilKimlb/TimeChat/issues"
   },
-  "pre-commit": {
-    "run": [
-      "lint"
-    ]
-  },
   "homepage": "https://github.com/DaniilKimlb/TimeChat#readme",
   "config": {
     "commitizen": {
