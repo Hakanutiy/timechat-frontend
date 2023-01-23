@@ -13,7 +13,7 @@ export const Layout: FC<LayoutProps> = ({ title, children, navigationLink }) => 
     <div className="flex h-screen w-screen p-4 items-center justify-center">
       <div className="max-w-[423px] w-full">
         <h1 className="text-4xl mb-6 font-bold">{title}</h1>
-        <div className="flex-col flex gap-4">{children}</div>
+        {children}
         <NavigationLink {...navigationLink} />
       </div>
     </div>

@@ -10,7 +10,7 @@ export const Login = () => {
         label: 'Create an account',
         to: '../register',
       }}>
-      <LoginForm />
+      <LoginForm onSuccess={() => alert('dasdadas')} />
     </Layout>
   )
 }
