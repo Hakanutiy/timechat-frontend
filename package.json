@@ -29,6 +29,11 @@
   "bugs": {
     "url": "https://github.com/DaniilKimlb/TimeChat/issues"
   },
+  "pre-commit": {
+    "run": [
+      "lint"
+    ]
+  },
   "homepage": "https://github.com/DaniilKimlb/TimeChat#readme",
   "config": {
     "commitizen": {
@@ -40,8 +45,7 @@
   },
   "husky": {
     "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS -g './config/git/commitlint.js'",
-      "pre-commit": "lint"
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS -g './config/git/commitlint.js'"
     }
   }
 }
