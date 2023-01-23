@@ -1,17 +1,47 @@
-import { Button, Link } from '@/components/Elements'
-import { InputField } from '@/components/Form'
+import { z } from 'zod'
 
-export const LoginForm = () => {
+import { Button } from '@/components/Elements'
+import { Form, InputField } from '@/components/Form'
+
+const schema = z.object({
+  username: z.string().min(1, 'Required'),
+  password: z.string().min(1, 'Required'),
+})
+
+type LoginValues = {
+  username: string
+  password: string
+}
+
+interface LoginFormProps {
+  onSuccess: () => void
+}
+
+export const LoginForm = ({ onSuccess }: LoginFormProps) => {
   return (
-    <>
-      <InputField label={'Email'} type="email" className="w-full" />
-      <div>
-        <InputField label={'Password'} type="password" className="w-full" />
-        <Link to={'/'} className="text-xs mt-2">
-          Forgot Password?
-        </Link>
-      </div>
-      <Button className="w-full">Login</Button>
-    </>
+    <Form<LoginValues, typeof schema>
+      onSubmit={(data, event) => {
+        console.log(data)
+      }}>
+      {({ register, formState }) => (
+        <div className="flex flex-col gap-4">
+          <InputField
+            registration={register('username')}
+            label={'Username'}
+            type="text"
+            className="w-full"
+          />
+          <InputField
+            registration={register('password')}
+            label={'Password'}
+            type="password"
+            className="w-full"
+          />
+          <Button className="w-full" type={'submit'}>
+            Login
+          </Button>
+        </div>
+      )}
+    </Form>
   )
 }
