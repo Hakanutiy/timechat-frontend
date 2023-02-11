@@ -2,6 +2,6 @@
   @apply outline-0;
   @apply flex-row items-center py-2.5 px-2 rounded-md border;
   &__error {
-    @apply text-red-500 border-red-500
+    @apply text-red-500 border-red-500;
   }
 }
