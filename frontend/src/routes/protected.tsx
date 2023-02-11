@@ -1,3 +1,14 @@
 import { Navigate } from 'react-router-dom'
 
-export const protectedRoutes = [{ path: '*', element: <Navigate to="/" /> }]
+import { Test } from '@/features/test'
+
+export const protectedRoutes = [
+  {
+    path: '/test',
+    element: <Test />,
+  },
+  {
+    path: '*',
+    element: <Navigate to="test" />,
+  },
+]

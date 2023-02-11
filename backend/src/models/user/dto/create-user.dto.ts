@@ -7,7 +7,7 @@ export class CreateUserDto {
   @MaxLength(20)
   password: string;
 
-  @Match('password')
+  // @Match('password')
   passwordConfirm: string;
   readonly repeatPassword: string;
 

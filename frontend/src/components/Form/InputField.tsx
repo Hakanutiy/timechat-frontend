@@ -15,10 +15,14 @@ export const InputField: FC<InputFieldProps> = ({
   className,
   registration,
   type,
+  error,
 }) => {
   return (
-    <FieldWrapper label={label}>
-      <input type={type} className={clsx('input', className)} {...registration}></input>
+    <FieldWrapper label={label} error={error}>
+      <input
+        type={type}
+        className={clsx('input', className, { input__error: error })}
+        {...registration}></input>
     </FieldWrapper>
   )
 }
