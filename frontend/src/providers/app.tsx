@@ -3,6 +3,7 @@ import { QueryClientProvider } from 'react-query'
 import { BrowserRouter as Router } from 'react-router-dom'
 
 import { Spinner } from '@/components/Elements/Spinner'
+import { AuthProvider } from '@/lib/auth'
 import { queryClient } from '@/lib/react-query'
 
 interface AppProviderProps {
@@ -18,7 +19,9 @@ export const AppProvider = ({ children }: AppProviderProps) => {
         </div>
       }>
       <QueryClientProvider client={queryClient}>
-        <Router>{children}</Router>
+        <AuthProvider>
+          <Router>{children}</Router>
+        </AuthProvider>
       </QueryClientProvider>
     </React.Suspense>
   )
