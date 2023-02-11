@@ -1,11 +1,11 @@
 import { useAuth } from '@/lib/auth'
 
-export const Tests = () => {
+export const Test = () => {
   const { signout } = useAuth()
   return (
     <div>
       <div>
-        <p>Вот это прикол</p>
+        <p>Test</p>
         <button onClick={signout}>Sign-out</button>
       </div>
     </div>

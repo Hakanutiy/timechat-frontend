@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from 'react'
 
-import { useLogin } from '@/features/auth'
+import { useLogin, useRegister } from '@/features/auth'
 import storage from '@/utils/storage'
 
 const AuthContext = createContext({ isAuth: false, setIsAuth: null })
@@ -17,12 +17,21 @@ export const useAuth = () => {
     },
   })
 
+  const register = useRegister()
+
   const signout = () => {
     storage.clearToken()
     setIsAuth(false)
   }
 
-  return { isAuth, login: login.mutate, signout }
+  return {
+    isAuth,
+    login: login.mutate,
+    signout,
+    isLoggingIn: login.isLoading,
+    isRegistering: register.isLoading,
+    register: register.mutate,
+  }
 }
 
 export const AuthProvider = ({ children }) => {

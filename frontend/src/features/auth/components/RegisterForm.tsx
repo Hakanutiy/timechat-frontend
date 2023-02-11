@@ -1,8 +1,8 @@
 import { z } from 'zod'
 
-import { Button, Link } from '@/components/Elements'
+import { Button } from '@/components/Elements'
 import { Form, InputField } from '@/components/Form'
-import { useRegister } from '@/features/auth/api/register'
+import { useAuth } from '@/lib/auth'
 
 const schema = z
   .object({
@@ -26,18 +26,18 @@ interface RegisterFormProps {
 }
 
 export const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
-  const register = useRegister()
-  const onSubmit = async (data, event) => {
-    await register.mutate(data)
+  const { register } = useAuth()
+  const onSubmit = async (data) => {
+    await register(data)
     onSuccess()
   }
   return (
     <Form<RegisterValues, typeof schema> schema={schema} onSubmit={onSubmit}>
       {({ register, formState }) => (
-        <div>
+        <div className="flex flex-col gap-4">
           <InputField
             registration={register('username')}
-            label={'username'}
+            label={'Username'}
             className="w-full"
             error={formState?.errors['username']}
           />
