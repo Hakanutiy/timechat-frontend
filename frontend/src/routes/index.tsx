@@ -1,6 +1,6 @@
 import { Navigate, useRoutes } from 'react-router-dom'
 
-import { CallsRoutes } from '@/features/Audio_Calls/routes'
+import { CallsRoutes } from '@/features/audiocalls/routes'
 import { LoginRoutes } from '@/features/login'
 import { MessageRoutes } from '@/features/Message/routes'
 import { ProfileRoutes } from '@/features/Profile/routes'
