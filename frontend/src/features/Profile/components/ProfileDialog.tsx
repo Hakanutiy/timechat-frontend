@@ -10,9 +10,9 @@ export const ProfileDialog = () => {
             alt="profileimg"
             src="https://readd.org/wp-content/uploads/2019/05/screenshot-2017-05-19-001-3.jpg"
             className="rounded-full w-16 h-16"></img>
-          <div>
+          <div className="truncate-1">
             <p className="pl-3.5 font-semibold  text-sm h-4">Чингиз Хан</p>
-            <p className="text-gray-400 text-xs pl-3.5 h-1 py-1">@Chingizhan</p>
+            <p className="text-gray-400 text-xs pl-3.5 h-1 py-1  ">@Chingizhan</p>
             <p className="font-medium text-green-500 pt-2 pl-3 truncate-1 ">online</p>
           </div>
 
@@ -35,7 +35,7 @@ export const ProfileDialog = () => {
             alt="profileimg"
             src="https://readd.org/wp-content/uploads/2019/05/screenshot-2017-05-19-001-3.jpg"
             className="rounded-full w-16 h-16"></img>
-          <div>
+          <div className="truncate-1">
             <p className="pl-3.5 font-semibold text-sm h-4">Мгыдрчан Соломон</p>
             <p className="text-gray-400 text-xs pl-3.5 h-1 py-1">@Chingizhan</p>
             <p className=" font-medium text-red-600 pt-2 pl-3 truncate-1 ">offline</p>
@@ -59,7 +59,7 @@ export const ProfileDialog = () => {
             alt="profileimg"
             src="https://readd.org/wp-content/uploads/2019/05/screenshot-2017-05-19-001-3.jpg"
             className="rounded-full w-16 h-16"></img>
-          <div>
+          <div className="truncate-1">
             <p className="pl-3.5 font-semibold  text-sm h-4">Мгыдрчан Соломон</p>
             <p className="text-gray-400 text-xs pl-3.5 h-1 py-1">@Chingizhan</p>
             <p className="font-medium text-red-700 pt-2 pl-3 truncate-1">offline</p>
@@ -79,15 +79,15 @@ export const ProfileDialog = () => {
             </svg>
           </div>
         </div>
-        <div className="flex h-20 mt-2 pr-4 ">
+        <div className="flex h-20 mt-2 pr-4">
           <img
             alt="profileimg"
             src="https://readd.org/wp-content/uploads/2019/05/screenshot-2017-05-19-001-3.jpg"
             className="rounded-full w-16 h-16"></img>
-          <div>
+          <div className="truncate-1">
             <p className="pl-3.5 font-semibold  text-sm h-4">Мгыдрчан Соломон</p>
             <p className="text-gray-400 text-xs pl-3.5 h-1 py-1">@Chingizhan</p>
-            <p className="font-medium text-green-600 pt-2 pl-3 truncate-1">online</p>
+            <p className="font-medium text-green-600 pt-2 pl-3 ">online</p>
           </div>
 
           <svg
@@ -108,10 +108,10 @@ export const ProfileDialog = () => {
             alt="profileimg"
             src="https://readd.org/wp-content/uploads/2019/05/screenshot-2017-05-19-001-3.jpg"
             className="rounded-full w-16 h-16"></img>
-          <div>
+          <div className="truncate-1">
             <p className="pl-3.5 font-semibold  text-sm h-4">Мгыдрчан Соломон</p>
             <p className="text-gray-400 text-xs pl-3.5 h-1 py-1">@Chingizhan</p>
-            <p className="font-medium text-green-600 pt-2 pl-3 truncate-1">online</p>
+            <p className="font-medium text-green-600 pt-2 pl-3 ">online</p>
           </div>
 
           <svg

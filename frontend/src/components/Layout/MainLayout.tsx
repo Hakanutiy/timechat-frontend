@@ -1,4 +1,4 @@
-import { NavBar } from '@/features/audiocalls/components/NavBar'
+import { NavBar } from '@/components/Elements/NavBar'
 
 export const MainLayout = ({ children }) => {
   return (

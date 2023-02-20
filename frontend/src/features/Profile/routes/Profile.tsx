@@ -1,15 +1,14 @@
-import { NavBar } from '../components/NavBar'
+import { NavBar } from '@/components/Elements/NavBar'
+import { MainLayout } from '@/components/Layout'
+
 import { PlaceholderChat } from '../components/PlaceholderChat'
 import { ProfileDialog } from '../components/ProfileDialog'
 
 export const Profile = () => {
   return (
-    <div>
-      <div className="flex">
-        <NavBar />
-        <ProfileDialog />
-        <PlaceholderChat />
-      </div>
-    </div>
+    <MainLayout>
+      <ProfileDialog />
+      <PlaceholderChat />
+    </MainLayout>
   )
 }
