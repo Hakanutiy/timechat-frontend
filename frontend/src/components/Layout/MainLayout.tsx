@@ -1,12 +1,7 @@
-import { NavBar } from '@/components/Elements/NavBar'
-
 export const MainLayout = ({ children }) => {
   return (
     <div className="h-screen relative">
-      <div className="flex">
-        <NavBar />
-        {children}
-      </div>
+      <div className="flex">{children}</div>
     </div>
   )
 }
