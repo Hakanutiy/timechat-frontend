@@ -1,7 +1,6 @@
-import { yupResolver } from '@hookform/resolvers/yup'
 import clsx from 'clsx'
 import * as React from 'react'
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import { FieldError } from 'react-hook-form'
 
 interface FieldWrapperProps {

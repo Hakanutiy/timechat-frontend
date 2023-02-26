@@ -27,19 +27,17 @@ export const LoginForm = ({ onSuccess }: LoginFormProps) => {
   return (
     <Form<LoginValues, typeof schema> schema={schema} onSubmit={onSubmit}>
       {({ register, formState }) => (
-        <div className="flex flex-col gap-4">
+        <div className="">
           <InputField
             registration={register('username')}
             label={'Username'}
             type="text"
-            className="w-full"
             error={formState?.errors['username']}
           />
           <InputField
             registration={register('password')}
             label={'Password'}
             type="password"
-            className="w-full"
             error={formState?.errors['password']}
           />
           <Button className="w-full" type={'submit'}>
