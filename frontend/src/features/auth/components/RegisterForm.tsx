@@ -34,25 +34,22 @@ export const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
   return (
     <Form<RegisterValues, typeof schema> schema={schema} onSubmit={onSubmit}>
       {({ register, formState }) => (
-        <div className="flex flex-col gap-4">
+        <div>
           <InputField
             registration={register('username')}
             label={'Username'}
-            className="w-full"
             error={formState?.errors['username']}
           />
           <InputField
             registration={register('password')}
             label={'Password'}
             type="password"
-            className="w-full"
             error={formState?.errors['password']}
           />
           <InputField
             registration={register('confirmPassword')}
             label={'Repeat password'}
             type="password"
-            className="w-full"
             error={formState?.errors['password']}
           />
           <Button className="w-full">Register</Button>

@@ -1,14 +1,16 @@
 import { Navigate } from 'react-router-dom'
 
-import { Test } from '@/features/test'
+import { lazyImport } from '@/utils/lazyImport'
+
+const { ChatRoutes } = lazyImport(() => import('@/features/chat'), 'ChatRoutes')
 
 export const protectedRoutes = [
   {
-    path: '/test',
-    element: <Test />,
+    path: '/chat',
+    element: <ChatRoutes />,
   },
   {
     path: '*',
-    element: <Navigate to="test" />,
+    element: <Navigate to="chat" />,
   },
 ]

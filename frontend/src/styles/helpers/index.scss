@@ -36,6 +36,26 @@
   overflow: auto;
 }
 
+.w-screen {
+  width: 100vw;
+}
+
+.h-screen {
+  height: 100vh;
+}
+
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
 .hidden-md {
   @media (max-width: $break-md) {
     display: none !important;
