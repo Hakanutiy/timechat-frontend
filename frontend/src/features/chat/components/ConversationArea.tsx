@@ -1,7 +1,6 @@
-import '../../../styles/components/DialogNavBar.scss'
-export const DialogNavBar = () => {
+export const ConversationArea = () => {
   return (
-    <div className="conversation-area">
+    <div className="conversation-area hidden-sm">
       <div className="msg online">
         <img
           className="msg-profile"

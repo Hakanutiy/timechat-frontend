@@ -1,4 +1,4 @@
-export const SettingHeaderIcon = () => {
+export const SettingIcon = () => {
   return (
     <div>
       {' '}

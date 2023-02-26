@@ -1,7 +1,6 @@
-import '@/styles/components/ChatDialogSVG.scss'
-export const ChatAreaImageIcon = () => {
+export const ImageIcon = () => {
   return (
-    <div className="Icon">
+    <div className="icon">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"

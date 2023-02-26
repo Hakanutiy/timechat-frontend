@@ -17,12 +17,20 @@
   }
 }
 
+
 .search-bar {
   height: 80px;
   z-index: 3;
   position: relative;
   margin-left: 280px;
+  @media (max-width: $break-sm) {
+    margin-left: 0 !important;
+    flex-grow: 1;
 
+    input {
+      padding-right: 10px;
+    }
+  }
   input {
     height: 100%;
     width: 100%;
@@ -37,6 +45,7 @@
     font-family: var(--body-font);
     font-weight: 600;
     font-size: 15px;
+
     &::placeholder {
       color: var(--input-chat-color);
     }
@@ -49,23 +58,12 @@
   cursor: pointer;
   margin-left: auto;
   flex-shrink: 0;
+
   & > * + * {
     margin-left: 14px;
   }
 }
 
-.dark-light {
-  width: 22px;
-  height: 22px;
-  color: var(--settings-icon-color);
-  flex-shrink: 0;
-
-  svg {
-    width: 100%;
-    fill: transparent;
-    transition: 0.5s;
-  }
-}
 
 .user-profile {
   width: 40px;

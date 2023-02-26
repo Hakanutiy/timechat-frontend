@@ -1,7 +1,11 @@
+import { Head } from '../Head'
 export const MainLayout = ({ children }) => {
   return (
-    <div className="h-screen relative">
-      <div className="flex">{children}</div>
+    <div>
+      <div className="app">
+        <Head />
+        <div className="wrapper">{children}</div>
+      </div>
     </div>
   )
 }

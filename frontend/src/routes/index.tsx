@@ -1,17 +1,17 @@
 import { Navigate, useRoutes } from 'react-router-dom'
 
+import { ChatRoutes } from '@/features/chat'
 import { LoginRoutes } from '@/features/login'
-import { MessageRoutes } from '@/features/Message/routes'
 
 export enum ROUTES {
   login = '/login',
-  message = '/messages',
+  chat = '/chat',
 }
 
 const routes = [
   { path: ROUTES.login, element: <LoginRoutes /> },
+  { path: ROUTES.chat, element: <ChatRoutes /> },
   { path: '*', element: <Navigate to={ROUTES.login} /> },
-  { path: ROUTES.message, element: <MessageRoutes /> },
 ]
 
 export const AppRoutes = () => {

@@ -1,18 +1,6 @@
-@import 'vendors';
-@import 'components';
-html,
-body {
-  scroll-behavior: smooth;
-  margin: 0;
-  padding: 0;
-  font-family: Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif,
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-}
-
-.truncate-1 {
-  -webkit-box-orient: vertical;
-  display: -webkit-box;
-  overflow: hidden !important;
-  text-overflow: ellipsis;
-  -webkit-line-clamp: 1;
-}
+@import "global";
+@import "vendors";
+@import "theme";
+@import "variables";
+@import "helpers";
+@import "components";

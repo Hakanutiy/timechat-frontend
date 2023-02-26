@@ -1,8 +1,5 @@
 .chat-area {
   flex-grow: 1;
-}
-
-.chat-area {
   display: flex;
   flex-direction: column;
   overflow: auto;
@@ -143,5 +140,16 @@
   width: 100%;
   &::placeholder {
     color: var(--input-chat-color);
+  }
+}
+
+.icon {
+  color: var(--settings-icon-color);
+  width: 20px;
+  flex-shrink: 0;
+  cursor: pointer;
+  margin-left: 5px;
+  &:hover {
+    color: var(--settings-icon-hover);
   }
 }

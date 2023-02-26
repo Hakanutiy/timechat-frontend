@@ -1,7 +1,6 @@
-import '@/styles/components/ChatDialogSVG.scss'
-export const ChatAreaAddIcon = () => {
+export const PicturesIcon = () => {
   return (
-    <div className="Icon">
+    <div className="icon">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
@@ -10,9 +9,10 @@ export const ChatAreaAddIcon = () => {
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="feather feather-plus-circle">
-        <circle cx="12" cy="12" r="10" />
-        <path d="M12 8v8M8 12h8" />
+        className="feather feather-image">
+        <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+        <circle cx="8.5" cy="8.5" r="1.5" />
+        <path d="M21 15l-5-5L5 21" />
       </svg>
     </div>
   )

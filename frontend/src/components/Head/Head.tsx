@@ -1,9 +1,6 @@
-import '@/styles/components/DialogHeader.scss'
+import { DarkLightIcon, LogoIcon, SettingIcon } from '@/assets/icons'
 
-import { DarkLightIcon } from '@/assets/icons/js/DialogHeader/DarkLightIcon'
-import { LogoIcon } from '@/assets/icons/js/DialogHeader/LogoIcon'
-import { SettingHeaderIcon } from '@/assets/icons/js/DialogHeader/SettingHeaderIcon'
-export const DialogHeader = () => {
+export const Head = () => {
   return (
     <div className="header">
       <div className="logo">
@@ -18,7 +15,7 @@ export const DialogHeader = () => {
           <DarkLightIcon />
         </div>
         <div className="settings">
-          <SettingHeaderIcon />
+          <SettingIcon />
         </div>
         <img
           className="user-profile account-profile"

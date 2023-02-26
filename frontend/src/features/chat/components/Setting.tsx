@@ -1,12 +1,12 @@
-import '../../../styles/components/DialogSetting.scss'
-
-import { CallGroupIcon } from '@/assets/icons/js/DialogSetting/CallGroupIcon'
-import { ChangeEmojiIcon } from '@/assets/icons/js/DialogSetting/ChangeEmojiIcon'
-import { SharedPhotoIcon } from '@/assets/icons/js/DialogSetting/SharedPhotoIcon'
-import { VideoChatIcon } from '@/assets/icons/js/DialogSetting/VideoChatIcon'
-export const DialogSetting = () => {
+import {
+  CallGroupIcon,
+  ChangeEmojiIcon,
+  SharedPhotoIcon,
+  VideoChatIcon,
+} from '@/assets/icons'
+export const Setting = () => {
   return (
-    <div className="detail-area">
+    <div className="detail-area hidden-md">
       <div className="detail-area-header">
         <div className="msg-profile group">
           <svg

@@ -1,12 +1,12 @@
-import '../../../styles/components/ChatDialog.scss'
-
-import { ChatAreaAddIcon } from '@/assets/icons/js/ChatDialog/ChatAreaAddIcon'
-import { ChatAreaEmojiIcon } from '@/assets/icons/js/ChatDialog/ChatAreaEmojiIcon'
-import { ChatAreaImageIcon } from '@/assets/icons/js/ChatDialog/ChatAreaImageIcon'
-import { ChatAreaLikeIcon } from '@/assets/icons/js/ChatDialog/ChatAreaLikeIcon'
-import { ChatAreaPicturesIcon } from '@/assets/icons/js/ChatDialog/ChatAreaPicturesIcon'
-import { ChatAreaVideoIcon } from '@/assets/icons/js/ChatDialog/ChatAreaVideoIcon'
-export const ChatDialog = () => {
+import {
+  AddIcon,
+  EmojiIcon,
+  ImageIcon,
+  LikeIcon,
+  PicturesIcon,
+  VideoIcon,
+} from '@/assets/icons'
+export const Dialog = () => {
   return (
     <div className="chat-area">
       <div className="chat-area-header">
@@ -169,13 +169,13 @@ export const ChatDialog = () => {
         </div>
       </div>
       <div className="chat-area-footer">
-        <ChatAreaVideoIcon />
-        <ChatAreaImageIcon />
-        <ChatAreaAddIcon />
-        <ChatAreaPicturesIcon />
+        <VideoIcon />
+        <ImageIcon />
+        <AddIcon />
+        <PicturesIcon />
         <input type="text" placeholder="Type something here..." />
-        <ChatAreaEmojiIcon />
-        <ChatAreaLikeIcon />
+        <EmojiIcon />
+        <LikeIcon />
       </div>
     </div>
   )
