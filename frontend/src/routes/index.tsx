@@ -1,21 +1,15 @@
-import { Navigate, useRoutes } from 'react-router-dom'
+import { useRoutes } from 'react-router-dom'
 
-import { ChatRoutes } from '@/features/chat'
-import { LoginRoutes } from '@/features/login'
+import { useAuth } from '@/lib/auth'
 
-export enum ROUTES {
-  login = '/login',
-  chat = '/chat',
-}
-
-const routes = [
-  { path: ROUTES.login, element: <LoginRoutes /> },
-  { path: ROUTES.chat, element: <ChatRoutes /> },
-  { path: '*', element: <Navigate to={ROUTES.login} /> },
-]
+import { protectedRoutes } from './protected'
+import { publicRoutes } from './public'
 
 export const AppRoutes = () => {
-  const element = useRoutes([...routes])
+  const auth = useAuth()
 
+  const routes = auth.isAuth ? protectedRoutes : publicRoutes
+
+  const element = useRoutes([...routes])
   return <>{element}</>
 }

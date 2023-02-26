@@ -13,3 +13,7 @@ export async function fetcher<T, P extends Record<string, unknown>>(
   )
   return data
 }
+export async function mutation<T>(url: string, _data: string | object) {
+  const { data } = await api.post<T>(url, _data)
+  return data
+}
