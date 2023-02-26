@@ -1,1 +1,1 @@
-export * from './AuthLayout'
+export { MainLayout } from './MainLayout'

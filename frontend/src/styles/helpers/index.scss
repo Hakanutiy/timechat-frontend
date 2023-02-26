@@ -1,0 +1,60 @@
+.blue {
+  background-color: var(--blue);
+}
+
+.purple {
+  background-color: var(--purple);
+}
+
+.green {
+  background-color: var(--green);
+}
+
+.orange {
+  background-color: var(--orange);
+}
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.conversation-area,
+.detail-area {
+  width: 340px;
+  flex-shrink: 0;
+}
+
+.detail-area {
+  border-left: 1px solid var(--border-color);
+  margin-left: auto;
+  padding: 30px 30px 0 30px;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.hidden-md {
+  @media (max-width: $break-md) {
+    display: none !important;
+  }
+}
+
+.hidden-sm {
+  @media (max-width: $break-sm) {
+    display: none !important;
+  }
+}
+
+@media (max-width: $break-sm) {
+  .search-bar {
+    margin-left: 0 !important;
+    flex-grow: 1;
+
+    input {
+      padding-right: 10px;
+    }
+  }
+}
