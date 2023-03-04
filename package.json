@@ -1,54 +1,79 @@
 {
-  "name": "timechat",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "commit": "git cz",
+    "dev": "vite --host --port 8080",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint:format": "prettier . --write",
+    "lint:fix": "eslint ./src --ext .jsx,.js,.ts,.tsx --quiet --fix",
+    "lint": "npm run lint:format && npm run lint:fix"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^2.9.10",
+    "@types/node": "^18.7.18",
+    "clsx": "^1.2.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.43.0",
+    "react-leaflet": "^4.0.2",
+    "react-query": "^3.39.2",
+    "react-router-dom": "^6.4.0",
+    "type-fest": "^1.2.0",
+    "zod": "^3.20.2"
+  },
   "devDependencies": {
     "@commitlint/cli": "^17.4.2",
     "concurrently": "^7.6.0",
     "cz-customizable": "^7.0.0",
     "husky": "^8.0.3",
-    "pre-commit": "^1.2.2"
-  },
-  "scripts": {
-    "commit": "git cz",
-    "start": "node index.js",
-    "client": "npm run dev --prefix frontend",
-    "server": "npm run start:dev --prefix backend",
-    "lint:client": "npm run lint --prefix frontend",
-    "lint:server": "npm run lint --prefix backend",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "lint": "concurrently \"npm run lint:client\" \"npm run lint:server\""
+    "pre-commit": "^1.2.2",
+    "@tailwindcss/typography": "^0.5.7",
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.48.1",
+    "@typescript-eslint/parser": "^5.48.1",
+    "@vitejs/plugin-react": "^2.1.0",
+    "eslint": "^8.31.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-import": "^2.27.4",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.0",
+    "eslint-plugin-simple-import-sort": "^8.0.0",
+    "prettier": "2.7.1",
+    "sass": "^1.57.1",
+    "typescript": "^4.6.4",
+    "vite": "^3.1.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DaniilKimlb/TimeChat.git"
+    "url": "git+https://github.com/DaniilKimlb/TimeChat_Frontend.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/DaniilKimlb/TimeChat/issues"
+    "url": "https://github.com/DaniilKimlb/TimeChat_Frontend/issues"
   },
   "pre-commit": {
     "run": [
       "lint"
     ]
   },
-  "homepage": "https://github.com/DaniilKimlb/TimeChat#readme",
+  "homepage": "https://github.com/DaniilKimlb/TimeChat_Frontend#readme",
   "config": {
     "commitizen": {
       "path": "node_modules/cz-customizable"
     },
     "cz-customizable": {
-      "config": "config/git/commitizen.js"
+      "config": "config/git/commitizen.cjs"
     }
   },
   "husky": {
     "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS -g './config/git/commitlint.js'"
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS -g './config/git/commitlint.cjs'"
     }
-  },
-  "dependencies": {
-    "type-fest": "^3.5.7"
   }
 }
