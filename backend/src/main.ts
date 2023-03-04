@@ -1,18 +1,13 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ValidationPipe } from '@nestjs/common';
-import { useContainer } from 'class-validator';
+import { setupPlugins } from '@/plugins';
 
+const PORT = process.env.PORT || 3000;
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.useGlobalPipes(
-    new ValidationPipe({
-      whitelist: true,
-      transform: true,
-    }),
-  );
-  useContainer(app.select(AppModule), { fallbackOnErrors: true });
-  await app.listen(3000);
+  setupPlugins(app);
+  app.enableCors();
+  await app.listen(PORT);
 }
 
 bootstrap();
