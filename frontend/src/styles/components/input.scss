@@ -1,4 +1,15 @@
 .input {
   &__error {
   }
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 13px 10px 12px;
+  gap: 13px;
+  margin-bottom: 20px;
+  width: 420px;
+  height: 52px;
+  border-width: 1px;
+  border-radius: 6px;
 }

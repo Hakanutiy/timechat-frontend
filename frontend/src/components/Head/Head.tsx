@@ -4,7 +4,6 @@ export const Head = () => {
   return (
     <div className="header">
       <div className="logo">
-        {' '}
         <LogoIcon />
       </div>
       <div className="search-bar">

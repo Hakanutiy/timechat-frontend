@@ -10,7 +10,7 @@ export type LoginDTO = {
 }
 
 export const login = (data: LoginDTO) => {
-  return mutation<UserResponse>('/auth/login', data)
+  return mutation<UserResponse>('/auth/signin', data)
 }
 
 interface UseLoginOptions {

@@ -1,3 +1,6 @@
+import { Snackbar } from '@/components/Form/Snackbar'
+import storage from '@/utils/storage'
+
 import { Layout } from '../components/Layout'
 import { LoginForm } from '../components/LoginForm'
 
@@ -10,7 +13,7 @@ export const Login = () => {
         label: 'Create an account',
         to: '../register',
       }}>
-      <LoginForm onSuccess={() => alert('dasdadas')} />
+      <LoginForm onSuccess={() => alert('asdasd')} />
     </Layout>
   )
 }

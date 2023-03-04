@@ -1,0 +1,39 @@
+$layout-height: 90vh;
+$layout__field__width: 423px;
+
+.layout{
+  display: flex;
+  height: $layout-height;
+  padding: 16px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 16px;
+
+}
+
+.layout__field{
+  max-width: $layout__field__width;
+}
+
+.layout__text{
+  font-size: 36px;
+  margin-bottom: 36px;
+  font-weight: 700;
+}
+
+
+.login__button{
+  display: flex;
+  margin-top: 30px;
+}
+
+.login__text_clue{
+  color: #707070;
+
+}
+
+.login__text__register{
+  color: var(--theme-color);
+  margin-left: 30px;
+  text-decoration: none
+}

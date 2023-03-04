@@ -1,6 +1,7 @@
 import { FC, ReactNode } from 'react'
 
 import { Link } from '@/components/Elements'
+import { Snackbar } from '@/components/Form/Snackbar'
 
 interface LayoutProps {
   children: ReactNode
@@ -10,9 +11,9 @@ interface LayoutProps {
 
 export const Layout: FC<LayoutProps> = ({ title, children, navigationLink }) => {
   return (
-    <div className="flex h-screen w-screen p-4 items-center justify-center">
-      <div className="max-w-[423px] w-full">
-        <h1 className="text-4xl mb-6 font-bold">{title}</h1>
+    <div className="layout">
+      <div className="layout__field">
+        <h1 className="layout__text">{title}</h1>
         {children}
         <NavigationLink {...navigationLink} />
       </div>
@@ -27,10 +28,11 @@ interface NavigationLinkProps {
 }
 
 const NavigationLink: FC<NavigationLinkProps> = ({ subtext, label, to }) => (
-  <p className="flex justify-center py-10">
+  <p className="login__text_clue">
     {subtext}
     <Link to={to} className="ml-3 font-medium">
       {label}
     </Link>
+    <Snackbar />
   </p>
 )
