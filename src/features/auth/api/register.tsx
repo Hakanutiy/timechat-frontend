@@ -6,9 +6,11 @@ export type RegisterDTO = {
   username: string
   password: string
   confirmPassword: string
+  firstName: string
+  lastName: string
 }
 export const register = (data: RegisterDTO) => {
-  return mutation('/user/signup', data)
+  return mutation('/auth/signup', data)
 }
 
 export const useRegister = () => {

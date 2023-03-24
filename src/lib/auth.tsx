@@ -11,7 +11,7 @@ export const useAuth = () => {
   const login = useLogin({
     config: {
       onSuccess: (data) => {
-        storage.setToken(data.access_token)
+        storage.setToken(data.accessToken)
         setIsAuth(true)
       },
     },

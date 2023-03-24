@@ -1,4 +1,5 @@
 import { MainLayout } from '@/components/Layout'
+import { useGetUsers } from '@/features/chat/api'
 
 import { ConversationArea, Dialog, Setting } from '../components'
 

@@ -1,1 +1,1 @@
-export type UserResponse = { access_token: string }
+export type UserResponse = { accessToken: string; refresh_token: string }

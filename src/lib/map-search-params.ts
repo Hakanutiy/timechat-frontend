@@ -1,4 +1,4 @@
-export function mapSearchParams(q: Record<string, unknown>) {
+export function mapSearchParams(q: object) {
   const query = q
   const params = new URLSearchParams()
   for (const queryKey in query) {

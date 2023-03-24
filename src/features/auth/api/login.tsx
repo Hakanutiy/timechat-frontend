@@ -1,14 +1,13 @@
-import { useMutation } from 'react-query'
+import { useMutation, useQuery } from 'react-query'
 
 import { UserResponse } from '@/features/auth/types'
-import { mutation } from '@/lib/api'
-import { MutationConfig } from '@/lib/react-query'
+import { fetcher, mutation } from '@/lib/api'
+import { ExtractFnReturnType, MutationConfig, QueryConfig } from '@/lib/react-query'
 
 export type LoginDTO = {
   username: string
   password: string
 }
-
 export const login = (data: LoginDTO) => {
   return mutation<UserResponse>('/auth/signin', data)
 }

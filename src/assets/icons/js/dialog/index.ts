@@ -1,4 +1,5 @@
 export { AddIcon } from './AddIcon'
+export { CloseIcon } from './closeIcon'
 export { EmojiIcon } from './EmojiIcon'
 export { ImageIcon } from './ImageIcon'
 export { LikeIcon } from './LikeIcon'

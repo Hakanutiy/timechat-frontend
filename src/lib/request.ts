@@ -1,3 +1,5 @@
+import storage from '@/utils/storage'
+
 export type Method = 'GET' | 'PUT' | 'PATCH' | 'POST' | 'DELETE'
 export type Options = {
   url?: string
@@ -40,7 +42,10 @@ export const request = (function create(baseURL = '') {
     const headers: Record<string, string> = { ...options?.headers }
     let responseType = options?.responseType || 'text'
     let body = typeof data === 'string' ? data : undefined
-
+    const accessToken = storage.getToken()
+    if (accessToken) {
+      headers['Authorization'] = `Bearer ${accessToken}`
+    }
     if (typeof data === 'object') {
       body = JSON.stringify(data)
       headers['content-type'] = 'application/json'

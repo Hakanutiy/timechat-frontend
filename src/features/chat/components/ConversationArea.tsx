@@ -1,3 +1,5 @@
+import { ButtonModal } from '@/components/Elements/ButtonModule'
+
 export const ConversationArea = () => {
   return (
     <div className="conversation-area hidden-sm">
@@ -177,7 +179,9 @@ export const ConversationArea = () => {
           </div>
         </div>
       </div>
-      <button className="add"></button>
+      <div className="add">
+        <ButtonModal />
+      </div>
       <div className="overlay"></div>
     </div>
   )
