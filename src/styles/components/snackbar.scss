@@ -1,4 +1,4 @@
-.snackbar{
+.snackbar {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -8,18 +8,18 @@
   width: 155px;
   height: 45px;
   border-width: 0px;
-  background: #4ADE80;
+  background: #4ade80;
   border-radius: 22px;
   opacity: 0;
   transition: 0.5s;
   transform: scale(0.5);
 }
 
-.snackbar.active{
+.snackbar.active {
   opacity: 1;
   transform: scale(1);
 }
-.snackbar__text{
+.snackbar__text {
   width: 107px;
   height: 21px;
 
@@ -30,5 +30,3 @@
 
   text-align: center;
 }
-
-

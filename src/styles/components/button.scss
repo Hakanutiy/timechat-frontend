@@ -5,7 +5,7 @@
   align-items: center;
   padding: 13px 10px 12px;
   gap: 13px;
-  border:none;
+  border: none;
   width: 420px;
   height: 52px;
 
@@ -13,9 +13,8 @@
   border-radius: 6px;
 }
 
-.button__text{
-
+.button__text {
   font-weight: bolder;
   font-size: 16px;
-  color: var( --button-color);
+  color: var(--button-color);
 }
