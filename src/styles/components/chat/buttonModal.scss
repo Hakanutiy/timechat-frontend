@@ -46,7 +46,7 @@ $input__loupe__height: 30px;
     border: solid;
     border-width: 1px;
     border-radius: 20px;
-    background-color: $modal__win__background__color;
+    background-color: var(--body-bg-color);
     transition: 0.5s all;
     transform: scale(0.5);
   }
@@ -99,6 +99,7 @@ $input__loupe__height: 30px;
 
   .input__modal {
     display: flex;
+
   }
 
   .input__search {

@@ -6,7 +6,6 @@ import { AppProvider } from './providers/app'
 import { AppRoutes } from './routes'
 
 function App() {
-  const { theme, setTheme } = useTheme()
   return (
     <AppProvider>
       <AppRoutes />

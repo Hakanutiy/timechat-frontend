@@ -4,7 +4,21 @@ import {
   SharedPhotoIcon,
   VideoChatIcon,
 } from '@/assets/icons'
+import { useTheme } from '@/hooks/useTheme'
 export const Setting = () => {
+  const { themeMessage, setThemeMessage } = useTheme()
+  const handleThemeBLueClick = () => {
+    setThemeMessage('blue')
+  }
+  const handleThemePurpleClick = () => {
+    setThemeMessage('purple')
+  }
+  const handleThemeGreenClick = () => {
+    setThemeMessage('green')
+  }
+  const handleThemeOrangeClick = () => {
+    setThemeMessage('orange')
+  }
   return (
     <div className="detail-area hidden-md">
       <div className="detail-area-header">
@@ -39,10 +53,18 @@ export const Setting = () => {
         <div className="detail-change">
           Change Color
           <div className="colors">
-            <div className="color blue selected" data-color="blue"></div>
-            <div className="color purple" data-color="purple"></div>
-            <div className="color green" data-color="green"></div>
-            <div className="color orange" data-color="orange"></div>
+            <button className={'button_theme'} onClick={handleThemeBLueClick}>
+              <div className="color blue selected" data-color="blue"></div>
+            </button>
+            <button className={'button_theme'} onClick={handleThemePurpleClick}>
+              <div className="color purple" data-color="purple"></div>
+            </button>
+            <button className={'button_theme'} onClick={handleThemeGreenClick}>
+              <div className="color green" data-color="green"></div>
+            </button>
+            <button className={'button_theme'} onClick={handleThemeOrangeClick}>
+              <div className="color orange" data-color="orange"></div>
+            </button>
           </div>
         </div>
         <div className="detail-change">

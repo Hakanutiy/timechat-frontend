@@ -3,7 +3,7 @@ import { useTheme } from '@/hooks/useTheme'
 
 export const Head = () => {
   const { theme, setTheme } = useTheme()
-  const handleLightThemeClick = () => {
+  const handleThemeClick = () => {
     if (theme === 'light') {
       setTheme('dark')
     }
@@ -21,7 +21,7 @@ export const Head = () => {
       </div>
       <div className="user-settings">
         <div className="dark-light">
-          <button className={'button_dark'} onClick={handleLightThemeClick}>
+          <button className={'button_theme'} onClick={handleThemeClick}>
             <DarkLightIcon />
           </button>
         </div>
