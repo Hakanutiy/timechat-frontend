@@ -1,6 +1,16 @@
 import { DarkLightIcon, LogoIcon, SettingIcon } from '@/assets/icons'
+import { useTheme } from '@/hooks/useTheme'
 
 export const Head = () => {
+  const { theme, setTheme } = useTheme()
+  const handleLightThemeClick = () => {
+    if (theme === 'light') {
+      setTheme('dark')
+    }
+    if (theme === 'dark') {
+      setTheme('light')
+    }
+  }
   return (
     <div className="header">
       <div className="logo">
@@ -11,7 +21,9 @@ export const Head = () => {
       </div>
       <div className="user-settings">
         <div className="dark-light">
-          <DarkLightIcon />
+          <button className={'button_dark'} onClick={handleLightThemeClick}>
+            <DarkLightIcon />
+          </button>
         </div>
         <div className="settings">
           <SettingIcon />

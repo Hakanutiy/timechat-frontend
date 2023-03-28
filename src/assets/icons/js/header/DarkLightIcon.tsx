@@ -1,6 +1,6 @@
 export const DarkLightIcon = () => {
   return (
-    <div>
+    <div className={'icon'}>
       <svg
         viewBox="0 0 24 24"
         stroke="currentColor"
