@@ -16,13 +16,13 @@ export const Modal: FC<ModalProps> = ({ onClose, onOpen, children }) => {
 
   const onCloseModal = () => {
     onClose && onClose()
-    document.documentElement.style.overflow = 'auto'
   }
 
   const onEscape = OnEscKeyPressedDoCallback(onCloseModal)
 
   useEffect(() => {
     onOpen && onOpen()
+    modalWrapperRef.current.focus()
     document.documentElement.style.overflow = 'hidden'
     return () => {
       document.documentElement.style.overflow = 'auto'
