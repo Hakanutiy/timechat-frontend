@@ -1,6 +1,6 @@
 import { useMutation } from 'react-query'
 
-import { mutation } from '@/lib/api'
+import { fetcher } from '@/lib/api'
 
 export type RegisterDTO = {
   username: string
@@ -10,7 +10,7 @@ export type RegisterDTO = {
   lastName: string
 }
 export const register = (data: RegisterDTO) => {
-  return mutation('/auth/signup', data)
+  return fetcher('/auth/signup', { data, method: 'POST' })
 }
 
 export const useRegister = () => {

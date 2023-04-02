@@ -35,7 +35,7 @@ export const ButtonModal = () => {
       </div>
       {isLoading ? (
         <div>Loading...</div>
-      ) : response?.data.length ? (
+      ) : response?.data?.length ? (
         <div className="count_list">
           {response.data.map((country) => (
             <div className="count_user" key={country._id}>

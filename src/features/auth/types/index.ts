@@ -1,1 +1,5 @@
-export type UserResponse = { accessToken: string; refresh_token: string }
+export type UserResponse = Tokens
+export interface Tokens {
+  accessToken: string
+  refreshToken: string
+}

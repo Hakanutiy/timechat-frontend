@@ -1,9 +1,5 @@
-import storage from '@/utils/storage'
-
 export type Method = 'GET' | 'PUT' | 'PATCH' | 'POST' | 'DELETE'
 export type Options = {
-  url?: string
-  method?: Method
   baseURL?: string
   headers?: Record<string, string>
   responseType?: 'text' | 'json'
@@ -40,12 +36,8 @@ export const request = (function create(baseURL = '') {
     data?: string | object,
   ): Promise<Response<T>> {
     const headers: Record<string, string> = { ...options?.headers }
-    let responseType = options?.responseType || 'text'
+    let responseType = options?.responseType || 'json'
     let body = typeof data === 'string' ? data : undefined
-    const accessToken = storage.getToken()
-    if (accessToken) {
-      headers['Authorization'] = `Bearer ${accessToken}`
-    }
     if (typeof data === 'object') {
       body = JSON.stringify(data)
       headers['content-type'] = 'application/json'
@@ -67,11 +59,9 @@ export const request = (function create(baseURL = '') {
       }
 
       return res[responseType]()
-        .then((d) => {
-          response.data = d
-          response.data = JSON.parse(d)
+        .then((_data) => {
+          response.data = _data
         })
-        .catch(Object)
         .then(() => {
           if (import.meta.env.MODE === 'development' && res.status < 400) {
             // eslint-disable-next-line no-console
@@ -98,13 +88,6 @@ export const request = (function create(baseURL = '') {
     })
   }
 
-  request.get = <T = unknown>(url: string, config?: Options): Promise<Response<T>> =>
-    request(url, config, 'GET')
-  request.post = <T = unknown>(
-    url: string,
-    data?: string | object,
-    config?: Options,
-  ): Promise<Response<T>> => request(url, config, 'POST', data)
   request.create = create
   request.cancel = typeof AbortController == 'function' ? AbortController : Object
 

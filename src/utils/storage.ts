@@ -1,14 +1,16 @@
+import { Tokens } from '@/features/auth'
+
 const storagePrefix = 'time-chat_'
 
 const storage = {
-  getToken: () => {
-    return JSON.parse(window.localStorage.getItem(`${storagePrefix}token`) as string)
+  getTokens: () => {
+    return JSON.parse(window.localStorage.getItem(`${storagePrefix}tokens`)) as Tokens
   },
-  setToken: (token: string) => {
-    window.localStorage.setItem(`${storagePrefix}token`, JSON.stringify(token))
+  setTokens: (tokens: Tokens) => {
+    window.localStorage.setItem(`${storagePrefix}tokens`, JSON.stringify(tokens))
   },
-  clearToken: () => {
-    window.localStorage.removeItem(`${storagePrefix}token`)
+  clearTokens: () => {
+    window.localStorage.removeItem(`${storagePrefix}tokens`)
   },
 }
 

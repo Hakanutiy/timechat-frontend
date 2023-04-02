@@ -15,7 +15,7 @@ interface GetUsersFilters {
   search?: string
 }
 const getUsers = (filters: GetUsersFilters): Promise<DTOResponseGetUsers> => {
-  return fetcher('/users', filters)
+  return fetcher('/users', { params: filters, method: 'GET' })
 }
 
 interface UseGetUsersOptions {
