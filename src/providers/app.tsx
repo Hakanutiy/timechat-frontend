@@ -2,7 +2,7 @@ import React from 'react'
 import { QueryClientProvider } from 'react-query'
 import { BrowserRouter as Router } from 'react-router-dom'
 
-import { Spinner } from '@/components/Elements/Spinner'
+import { Spinner } from '@/components/Elements/Spinner/Spinner'
 import { AuthProvider } from '@/lib/auth'
 import { queryClient } from '@/lib/react-query'
 

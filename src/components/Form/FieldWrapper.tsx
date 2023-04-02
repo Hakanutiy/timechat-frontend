@@ -24,11 +24,11 @@ export const FieldWrapper: FC<FieldWrapperProps> = ({
 }) => {
   return (
     <div>
-      <label className={clsx('password__field', className)}>
+      <label className={clsx(className)}>
         {label}
-        <div className="login__input">{children}</div>
+        <div>{children}</div>
       </label>
-      <div className="login__error">{error?.message}</div>
+      <div>{error?.message}</div>
     </div>
   )
 }

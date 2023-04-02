@@ -1,9 +1,18 @@
-.detail-area-header {
+.detailArea {
+  border-left: 1px solid var(--border-color);
+  margin-left: auto;
+  padding: 30px 30px 0 30px;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.detailAreaHeader {
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  .msg-profile {
+  .msgProfile {
     margin-right: 0;
     width: 60px;
     height: 60px;
@@ -11,19 +20,19 @@
   }
 }
 
-.detail-title {
+.detailTitle {
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 10px;
 }
 
-.detail-subtitle {
+.detailSubtitle {
   font-size: 12px;
   font-weight: 600;
   color: var(--msg-date);
 }
 
-.detail-button {
+.detailButton {
   border: 0;
   background-color: var(--button-bg-color);
   padding: 10px 14px;
@@ -44,13 +53,13 @@
   }
 }
 
-.detail-buttons {
+.detailButtons {
   margin-top: 20px;
   display: flex;
   width: 100%;
 }
 
-.detail-area input {
+.detailArea input {
   background-color: transparent;
   border: none;
   width: 100%;
@@ -69,11 +78,11 @@
   }
 }
 
-.detail-changes {
+.detailChanges {
   margin-top: 40px;
 }
 
-.detail-change {
+.detailChange {
   color: var(--detail-font-color);
   font-family: var(--body-font);
   font-weight: 600;
@@ -97,7 +106,7 @@
   height: 16px;
   border-radius: 50%;
   cursor: pointer;
-  &.selected {
+  &Selected {
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' stroke='%23fff' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round' class='css-i6dzq1' viewBox='0 0 24 24'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E");
     background-size: 10px;
     background-position: center;
@@ -108,7 +117,7 @@
   }
 }
 
-.detail-photo-title {
+.detailPhotoTitle {
   display: flex;
   align-items: center;
 
@@ -117,12 +126,12 @@
   }
 }
 
-.detail-photos {
+.detailPhotos {
   margin-top: 30px;
   text-align: center;
 }
 
-.detail-photo-title {
+.detailPhotoTitle {
   color: var(--detail-font-color);
   font-weight: 600;
   font-size: 14px;
@@ -132,7 +141,7 @@
   }
 }
 
-.detail-photo-grid {
+.detailPhotoGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 6px;
@@ -148,14 +157,14 @@
   }
 }
 
-.view-more {
+.viewMore {
   color: var(--theme-color);
   font-weight: 600;
   font-size: 15px;
   margin: 25px 0;
 }
 
-.follow-me {
+.followMe {
   text-decoration: none;
   font-size: 14px;
   width: calc(100% + 60px);
@@ -177,13 +186,13 @@
   }
 }
 
-.follow-text {
+.followText {
   display: flex;
   align-items: center;
   transition: 0.3s;
 }
 
-.follow-me:hover {
+.followMe:hover {
   .follow-text {
     transform: translateY(100%);
   }
@@ -216,7 +225,7 @@
   margin-right: 10px;
 }
 
-.chat-area-group {
+.chatAreaGroup {
   flex-shrink: 0;
   display: flex;
   * {

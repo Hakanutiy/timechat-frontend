@@ -3,6 +3,8 @@ import { FC, ReactNode } from 'react'
 import { Link } from '@/components/Elements'
 import { Snackbar } from '@/components/Form/Snackbar'
 
+import styles from './styles.module.scss'
+
 interface LayoutProps {
   children: ReactNode
   title: string
@@ -11,9 +13,9 @@ interface LayoutProps {
 
 export const Layout: FC<LayoutProps> = ({ title, children, navigationLink }) => {
   return (
-    <div className="layout">
-      <div className="layout__field">
-        <h1 className="layout__text">{title}</h1>
+    <div className={styles.layout}>
+      <div className={styles.layoutField}>
+        <h1 className={styles.layoutTitle}>{title}</h1>
         {children}
         <NavigationLink {...navigationLink} />
       </div>
@@ -28,7 +30,7 @@ interface NavigationLinkProps {
 }
 
 const NavigationLink: FC<NavigationLinkProps> = ({ subtext, label, to }) => (
-  <p className="login__text_clue">
+  <p>
     {subtext}
     <Link to={to} className="ml-3 font-medium">
       {label}

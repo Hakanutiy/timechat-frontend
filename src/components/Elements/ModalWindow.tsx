@@ -1,28 +1,36 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 import { CloseIcon } from '@/assets/icons'
 
-export const ModalWindow = ({ children }) => {
+interface ModalWindowProps {
+  trigger?: React.FC<{ open: () => void }>
+  children: React.ReactNode
+}
+
+export const ModalWindow: React.FC<ModalWindowProps> = ({ children, trigger }) => {
   const [open, setOpen] = useState(false)
+  const Trigger = trigger
   return (
-    <div className={'modal'}>
-      <button className="add" onClick={() => setOpen(true)}></button>
-      <div className={open ? 'overlay active' : 'overlay'}>
-        <div className="modal">
-          <div className={open ? 'modal__win active' : 'modal__win'}>
-            <div className="modal__content">
-              <div>
-                <div className={'modal__header'}>
-                  <button className="close" onClick={() => setOpen(false)}>
-                    <CloseIcon />
-                  </button>
+    <>
+      <Trigger open={() => setOpen(true)} />
+      <div className={'modal'}>
+        <div className={open ? 'overlay active' : 'overlay'}>
+          <div className="modal">
+            <div className={open ? 'modal__win active' : 'modal__win'}>
+              <div className="modal__content">
+                <div>
+                  <div className={'modal__header'}>
+                    <button className="close" onClick={() => setOpen(false)}>
+                      <CloseIcon />
+                    </button>
+                  </div>
+                  {children}
                 </div>
-                {children}
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }

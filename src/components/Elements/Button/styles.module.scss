@@ -1,20 +1,25 @@
+$height: 42px;
+$width: 100%;
+$rounded: 6px;
+$spacing: 13px 10px 12px;
+$textFontSize: 16px;
+
 .button {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 13px 10px 12px;
+  padding: $spacing;
   gap: 13px;
   border: none;
-  width: 420px;
-  height: 52px;
-
+  width: $width;
+  height: $height;
   background: var(--button-bg-color);
-  border-radius: 6px;
+  border-radius: $rounded;
 }
 
-.button__text {
+.buttonText {
   font-weight: bolder;
-  font-size: 16px;
+  font-size: $textFontSize;
   color: var(--button-color);
 }

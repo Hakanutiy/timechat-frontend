@@ -2,8 +2,6 @@ import { z } from 'zod'
 
 import { Button } from '@/components/Elements'
 import { Form, InputField } from '@/components/Form'
-import { Snackbar } from '@/components/Form/Snackbar'
-import { useLogin } from '@/features/auth/api/login'
 import { useAuth } from '@/lib/auth'
 
 const schema = z.object({
@@ -41,9 +39,7 @@ export const LoginForm = ({ onSuccess }: LoginFormProps) => {
             type="password"
             error={formState?.errors['password']}
           />
-          <Button className="login__button" type={'submit'}>
-            Login
-          </Button>
+          <Button type={'submit'}>Login</Button>
         </div>
       )}
     </Form>

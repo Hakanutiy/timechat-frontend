@@ -1,5 +1,9 @@
+import clsx from 'clsx'
+
 import { DarkLightIcon, LogoIcon, SettingIcon } from '@/assets/icons'
 import { useTheme } from '@/hooks/useTheme'
+
+import styles from './styles.module.scss'
 
 export const Head = () => {
   const { theme, setTheme } = useTheme()
@@ -12,24 +16,22 @@ export const Head = () => {
     }
   }
   return (
-    <div className="header">
-      <div className="logo">
+    <div className={styles.header}>
+      <div className={styles.logo}>
         <LogoIcon />
       </div>
-      <div className="search-bar">
+      <div className={styles.searchBar}>
         <input type="text" placeholder="Search..." />
       </div>
-      <div className="user-settings">
-        <div className="dark-light">
-          <button className={'button_theme'} onClick={handleThemeClick}>
-            <DarkLightIcon />
-          </button>
-        </div>
-        <div className="settings">
+      <div className={styles.userSettings}>
+        <button className={styles.darkLight} onClick={handleThemeClick}>
+          <DarkLightIcon />
+        </button>
+        <div className={clsx(styles.settings)}>
           <SettingIcon />
         </div>
         <img
-          className="user-profile account-profile"
+          className={clsx(styles.userProfile, styles.accountProfile)}
           src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3364143/download+%281%29.png"
           alt="img-profile"></img>
       </div>

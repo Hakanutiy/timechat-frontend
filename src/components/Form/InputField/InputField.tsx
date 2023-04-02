@@ -4,6 +4,8 @@ import { UseFormRegisterReturn } from 'react-hook-form'
 
 import { FieldWrapper, FieldWrapperPassThroughProps } from '@/components/Form'
 
+import styles from './styles.module.scss'
+
 interface InputFieldProps extends FieldWrapperPassThroughProps {
   type?: 'text' | 'password' | 'email'
   className?: string
@@ -21,7 +23,7 @@ export const InputField: FC<InputFieldProps> = ({
     <FieldWrapper label={label} error={error}>
       <input
         type={type}
-        className={clsx('input', className, { input__error: error })}
+        className={clsx(styles.input, className, { input__error: error })}
         {...registration}></input>
     </FieldWrapper>
   )

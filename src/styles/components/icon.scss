@@ -1,0 +1,11 @@
+.icon {
+  color: var(--settings-icon-color);
+  width: 20px;
+  display: flex;
+  flex-shrink: 0;
+  cursor: pointer;
+  margin-left: 5px;
+  &:hover {
+    color: var(--settings-icon-hover);
+  }
+}

@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
-import { CloseIcon } from '@/assets/icons'
 import { Searchmodal } from '@/assets/icons/js/dialog/searchmodal'
+import { PaginationEndlessRibbon } from '@/components/Elements'
 import { ModalWindow } from '@/components/Elements/ModalWindow'
-import PaginationEndlessRibbon from '@/components/Elements/PaginationEndlessRibbon'
 import { useGetUsers } from '@/features/chat/api'
 import { useDebounce } from '@/hooks/useDebounce'
 
@@ -19,7 +18,7 @@ export const ButtonModal = () => {
   const [openSearch, setOpenSearch] = useState(false)
 
   return (
-    <ModalWindow>
+    <ModalWindow trigger={({ open }) => <button onClick={open} className="add" />}>
       <div className={'modal__header'}>
         <div className={'input__modal'}>
           <button

@@ -1,9 +1,9 @@
-.chat-area {
+.chatArea {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   overflow: auto;
-  &-header {
+  &Header {
     display: flex;
     position: sticky;
     top: 0;
@@ -15,35 +15,35 @@
     padding: 20px;
     background: var(--chat-header-bg);
   }
-  &-profile {
+  &Profile {
     width: 32px;
     border-radius: 50%;
     object-fit: cover;
   }
-  &-title {
+  &Title {
     font-size: 18px;
     font-weight: 600;
   }
-  &-main {
+  &Main {
     flex-grow: 1;
   }
 }
 
-.chat-msg-img {
+.chatMsgImg {
   height: 40px;
   width: 40px;
   border-radius: 50%;
   object-fit: cover;
 }
 
-.chat-msg-profile {
+.chatMsgProfile {
   flex-shrink: 0;
   margin-top: auto;
   margin-bottom: -20px;
   position: relative;
 }
 
-.chat-msg-date {
+.chatMsgDate {
   position: absolute;
   left: calc(100% + 12px);
   bottom: 0;
@@ -53,17 +53,17 @@
   white-space: nowrap;
 }
 
-.chat-msg {
+.chatMsg {
   display: flex;
   padding: 0 20px 45px;
-  &-content {
+  &Content {
     margin-left: 12px;
     max-width: 70%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
   }
-  &-text {
+  &Text {
     background-color: var(--chat-text-bg);
     padding: 15px;
     border-radius: 20px 20px 20px 0;
@@ -76,34 +76,34 @@
   }
 }
 
-.chat-msg-text {
+.chatMsgText {
   color: var(--chat-text-color);
 }
 
 .owner {
   flex-direction: row-reverse;
-  .chat-msg-content {
+  .chatMsgContent {
     margin-left: 0;
     margin-right: 12px;
     align-items: flex-end;
   }
-  .chat-msg-text {
+  .chatMsgText {
     background-color: var(--theme-color);
     color: #fff;
     border-radius: 20px 20px 0 20px;
   }
-  .chat-msg-date {
+  .chatMsgDate {
     left: auto;
     right: calc(100% + 12px);
   }
 }
 
-.chat-msg-text img {
+.chatMsgText img {
   max-width: 300px;
   width: 100%;
 }
 
-.chat-area-footer {
+.chatAreaFooter {
   display: flex;
   border-top: 1px solid var(--border-color);
   width: 100%;
@@ -115,7 +115,7 @@
   left: 0;
 }
 
-.chat-area-footer svg {
+.chatAreaFooter svg {
   color: var(--settings-icon-color);
   width: 20px;
   flex-shrink: 0;
@@ -129,7 +129,7 @@
   }
 }
 
-.chat-area-footer input {
+.chatAreaFooter input {
   border: none;
   color: var(--body-color);
   background-color: var(--input-bg);
@@ -140,16 +140,5 @@
   width: 100%;
   &::placeholder {
     color: var(--input-chat-color);
-  }
-}
-
-.icon {
-  color: var(--settings-icon-color);
-  width: 20px;
-  flex-shrink: 0;
-  cursor: pointer;
-  margin-left: 5px;
-  &:hover {
-    color: var(--settings-icon-hover);
   }
 }

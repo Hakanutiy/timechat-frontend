@@ -1,4 +1,4 @@
-import { FC, useRef, useState } from 'react'
+import { FC, useRef } from 'react'
 
 interface PaginationEndlessRibbonProps {
   onChange: (offset: number) => void

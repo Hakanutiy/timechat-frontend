@@ -1,3 +1,5 @@
 export * from './Button'
 export * from './Link'
+export * from './PaginationEndlessRibbon'
+export * from './Portal'
 export * from './Spinner'

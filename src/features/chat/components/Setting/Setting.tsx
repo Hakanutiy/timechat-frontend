@@ -1,3 +1,5 @@
+import clsx from 'clsx'
+
 import {
   CallGroupIcon,
   ChangeEmojiIcon,
@@ -5,8 +7,10 @@ import {
   VideoChatIcon,
 } from '@/assets/icons'
 import { useTheme } from '@/hooks/useTheme'
+
+import styles from './styles.module.scss'
 export const Setting = () => {
-  const { themeMessage, setThemeMessage } = useTheme()
+  const { setThemeMessage } = useTheme()
   const handleThemeBLueClick = () => {
     setThemeMessage('blue')
   }
@@ -20,9 +24,9 @@ export const Setting = () => {
     setThemeMessage('orange')
   }
   return (
-    <div className="detail-area hidden-md">
-      <div className="detail-area-header">
-        <div className="msg-profile group">
+    <div className={clsx(styles.detailArea, 'hidden-md', 'area')}>
+      <div className={clsx(styles.detailAreaHeader)}>
+        <div className={clsx(styles.msgProfile, styles.group)}>
           <svg
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -36,48 +40,48 @@ export const Setting = () => {
             <path d="M2 15.5l10-7 10 7M12 2v6.5" />
           </svg>
         </div>
-        <div className="detail-title">CodePen Group</div>
-        <div className="detail-subtitle">Created by Aysenur, 1 May 2020</div>
-        <div className="detail-buttons">
-          <button className="detail-button">
+        <div className={styles.detailTitle}>CodePen Group</div>
+        <div className={styles.detailSubtitle}>Created by Aysenur, 1 May 2020</div>
+        <div className={styles.detailButtons}>
+          <button className={styles.detailButton}>
             <CallGroupIcon /> Call Group
           </button>
-          <button className="detail-button">
+          <button className={styles.detailButton}>
             <VideoChatIcon />
             Video Chat
           </button>
         </div>
       </div>
-      <div className="detail-changes">
+      <div className={styles.detailChanges}>
         <input type="text" placeholder="Search in Conversation"></input>
-        <div className="detail-change">
+        <div className={styles.detailChange}>
           Change Color
-          <div className="colors">
-            <button className={'button_theme'} onClick={handleThemeBLueClick}>
-              <div className="color blue selected" data-color="blue"></div>
+          <div className={styles.colors}>
+            <button className={styles.buttonTheme} onClick={handleThemeBLueClick}>
+              <div className={clsx(styles.color, 'blue', styles.colorSelected)}></div>
             </button>
-            <button className={'button_theme'} onClick={handleThemePurpleClick}>
-              <div className="color purple" data-color="purple"></div>
+            <button className={styles.buttonTheme} onClick={handleThemePurpleClick}>
+              <div className={clsx(styles.color, 'purple')}></div>
             </button>
-            <button className={'button_theme'} onClick={handleThemeGreenClick}>
-              <div className="color green" data-color="green"></div>
+            <button className={styles.buttonTheme} onClick={handleThemeGreenClick}>
+              <div className={clsx(styles.color, 'green')}></div>
             </button>
-            <button className={'button_theme'} onClick={handleThemeOrangeClick}>
-              <div className="color orange" data-color="orange"></div>
+            <button className={styles.buttonTheme} onClick={handleThemeOrangeClick}>
+              <div className={clsx(styles.color, 'orange')}></div>
             </button>
           </div>
         </div>
-        <div className="detail-change">
+        <div className={styles.detailChange}>
           <ChangeEmojiIcon />
           Change Emoji
         </div>
       </div>
-      <div className="detail-photos">
-        <div className="detail-photo-title">
+      <div className={styles.detailPhotos}>
+        <div className={styles.detailPhotoTitle}>
           <SharedPhotoIcon />
           Shared photos
         </div>
-        <div className="detail-photo-grid">
+        <div className={styles.detailPhotoGrid}>
           <img
             src="https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2168&q=80"
             alt={'imageass'}
@@ -128,7 +132,7 @@ export const Setting = () => {
             alt={'imageass'}
           />
         </div>
-        <div className="view-more">View More</div>
+        <div className={styles.viewMore}>View More</div>
       </div>
     </div>
   )
