@@ -1,7 +1,9 @@
 import clsx from 'clsx'
 
 import { DarkLightIcon, LogoIcon, SettingIcon } from '@/assets/icons'
+import { MainModal } from '@/components/Modal'
 import { useTheme } from '@/hooks/useTheme'
+import { useUiStore } from '@/stores/ui'
 
 import styles from './styles.module.scss'
 
@@ -15,6 +17,7 @@ export const Head = () => {
       setTheme('light')
     }
   }
+  const { setCurrentModal } = useUiStore()
   return (
     <div className={styles.header}>
       <div className={styles.logo}>
