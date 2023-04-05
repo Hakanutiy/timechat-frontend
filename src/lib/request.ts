@@ -37,9 +37,11 @@ export const request = (function create(baseURL = '') {
   ): Promise<Response<T>> {
     const headers: Record<string, string> = { ...options?.headers }
     let responseType = options?.responseType || 'json'
-    const body = typeof data === 'string' ? data : undefined
+    let body
+    body = typeof data === 'string' ? data : undefined
     if (typeof data === 'object') {
       const isFormData = data instanceof FormData
+      body = data
       headers['content-type'] = isFormData
         ? 'application/x-www-form-urlencoded'
         : 'application/json'
@@ -47,7 +49,6 @@ export const request = (function create(baseURL = '') {
     }
     const url = `${options?.baseURL || baseURL}${uri}`
     const init = { method, headers, body }
-
     return fetch(url, init).then((res) => {
       const response = {} as Response<T>
 
