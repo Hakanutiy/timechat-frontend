@@ -40,10 +40,10 @@ export const request = (function create(baseURL = '') {
     let body = typeof data === 'string' ? data : undefined
     if (typeof data === 'object') {
       body = JSON.stringify(data)
-      headers['content-type'] = 'application/json'
+      const isFormData = data instanceof FormData
+      headers['content-type'] = isFormData ? 'multipart/form-data' : 'application/json'
       responseType = 'json'
     }
-
     const url = `${options?.baseURL || baseURL}${uri}`
     const init = { method, headers, body }
 
