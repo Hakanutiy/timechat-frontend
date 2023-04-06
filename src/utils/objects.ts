@@ -7,10 +7,10 @@ export function isPlainObject(o) {
 
   if (isObject(o) === false) return false
 
-  prototype = o.constructor
+  prototype = o?.constructor
   if (prototype === undefined) return true
 
-  prototype = constructor.prototype
+  prototype = constructor?.prototype
   if (isObject(prototype) === false) return false
 
   // eslint-disable-next-line no-prototype-builtins
