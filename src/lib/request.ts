@@ -1,3 +1,5 @@
+import { isPlainObject } from '@/utils/objects'
+
 export type Method = 'GET' | 'PUT' | 'PATCH' | 'POST' | 'DELETE'
 export type Options = {
   baseURL?: string
@@ -37,7 +39,7 @@ export const request = (function create(baseURL = '') {
   ): Promise<Response<T>> {
     const headers: Record<string, string> = { ...options?.headers }
     const responseType = options?.responseType || 'json'
-    const body = data as BodyInit
+    const body = (isPlainObject(data) ? JSON.stringify(data) : data) as BodyInit
     const url = `${options?.baseURL || baseURL}${uri}`
     const init = { method, headers, body }
     return fetch(url, init).then((res) => {
