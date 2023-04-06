@@ -39,7 +39,11 @@ export const request = (function create(baseURL = '') {
   ): Promise<Response<T>> {
     const headers: Record<string, string> = { ...options?.headers }
     const responseType = options?.responseType || 'json'
-    const body = (isObject(data) ? JSON.stringify(data) : data) as BodyInit
+    let body = data as BodyInit
+    if (isObject(data)) {
+      body = JSON.stringify(data)
+      headers['Content-Type'] = 'application/json'
+    }
     const url = `${options?.baseURL || baseURL}${uri}`
     const init = { method, headers, body }
     return fetch(url, init).then((res) => {
