@@ -10,12 +10,12 @@ $modal__win__height: 600px;
 $modal__win__background__color: white;
 $modal__close__width: 18px;
 $modal__close__height: 18px;
-$user_image__width: 75px;
-$user_image__height: 75px;
+$user_image__width: 45px;
+$user_image__height: 45px;
 $input__loupe__width: 30px;
 $input__loupe__height: 30px;
 
-.modal {
+
   .overlay {
     position: fixed;
     top: 0;
@@ -82,6 +82,8 @@ $input__loupe__height: 30px;
   .user_image {
     width: $user_image__width;
     height: $user_image__height;
+    border-radius: 50%;
+    object-fit: cover;
   }
 
   .user__name {
@@ -97,6 +99,11 @@ $input__loupe__height: 30px;
     padding-left: 15px;
   }
 
+
+  .user__info{
+    font-size: 10px;
+    margin-left: 10px;
+  }
   .input__modal {
     display: flex;
   }
@@ -150,4 +157,3 @@ $input__loupe__height: 30px;
     background: var(--button-bg-color);
     border-radius: 6px;
   }
-}

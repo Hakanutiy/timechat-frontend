@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 
-import { ButtonModal } from '@/components/Elements/ButtonModule'
+import { ButtonModal } from '@/features/chat/components/UserSearch/Result'
 
 import styles from './styles.module.scss'
 
@@ -21,7 +21,7 @@ export const ConversationArea = () => {
           </div>
         </div>
       </div>
-      <ButtonModal />
+
       <div className={styles.overlay}></div>
     </div>
   )

@@ -1,3 +1,5 @@
 export { ConversationArea } from './ConversationArea'
 export { Dialog } from './Dialog'
-export { Setting } from './Setting/Setting'
+export { Head } from './Head'
+export { Setting } from './Setting'
+export { UserSearch } from './UserSearch'

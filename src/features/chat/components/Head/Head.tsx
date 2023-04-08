@@ -1,14 +1,14 @@
 import clsx from 'clsx'
 
 import { DarkLightIcon, LogoIcon, SettingIcon } from '@/assets/icons'
-import { MainModal } from '@/components/Modal'
 import { useTheme } from '@/hooks/useTheme'
-import { useUiStore } from '@/stores/ui'
 
+import { UserSearch } from '../UserSearch'
 import styles from './styles.module.scss'
 
 export const Head = () => {
   const { theme, setTheme } = useTheme()
+
   const handleThemeClick = () => {
     if (theme === 'light') {
       setTheme('dark')
@@ -17,14 +17,14 @@ export const Head = () => {
       setTheme('light')
     }
   }
-  const { setCurrentModal } = useUiStore()
+
   return (
     <div className={styles.header}>
       <div className={styles.logo}>
         <LogoIcon />
       </div>
       <div className={styles.searchBar}>
-        <input type="text" placeholder="Search..." />
+        <UserSearch />
       </div>
       <div className={styles.userSettings}>
         <button className={styles.darkLight} onClick={handleThemeClick}>

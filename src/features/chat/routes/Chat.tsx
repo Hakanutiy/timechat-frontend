@@ -1,11 +1,10 @@
 import { MainLayout } from '@/components/Layout'
-import { useGetUsers } from '@/features/chat/api'
 
-import { ConversationArea, Dialog, Setting } from '../components'
+import { ConversationArea, Dialog, Head, Setting } from '../components'
 
 export const Chat = () => {
   return (
-    <MainLayout>
+    <MainLayout head={Head}>
       <div className="wrapper">
         <ConversationArea />
         <Dialog />

@@ -1,9 +1,8 @@
-import { Head } from '../Head'
-export const MainLayout = ({ children }) => {
+export const MainLayout = ({ children, head }) => {
   return (
     <div>
       <div className="app">
-        <Head />
+        {head()}
         <div className="wrapper">{children}</div>
       </div>
     </div>
