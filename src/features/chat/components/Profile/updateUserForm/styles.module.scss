@@ -1,0 +1,39 @@
+
+.profileSetting{
+}
+
+.countUser {
+  display: flex;
+  padding-left: 15px;
+}
+
+.userImage {
+  width: 75px;
+  height: 75px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.userName {
+  color: var(--chat-text-color);
+  font-size: 16px;
+  font-weight: initial;
+  padding-left: 15px;
+}
+
+.userMail {
+  font-size: 12px;
+  color: var(--gray);
+  padding-left: 15px;
+}
+
+.description{
+  font-size: 10px;
+  padding-left: 15px;
+}
+
+.buttonUpdate{
+  margin-bottom: 15px;
+}
+
+
