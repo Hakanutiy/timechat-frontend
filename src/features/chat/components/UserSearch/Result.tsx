@@ -4,6 +4,7 @@ import DefaultAvatar from '@/assets/image/DefaultAvatar.png'
 import { PaginationEndlessRibbon } from '@/components/Elements'
 import { useGetUsers } from '@/features/chat/api'
 
+import styles from './styles.module.scss'
 export const Result = ({ search }) => {
   const [offset, setOffset] = useState(10)
 
@@ -17,7 +18,7 @@ export const Result = ({ search }) => {
       {isLoading ? (
         <div>Loading...</div>
       ) : response?.data?.length ? (
-        <div className="count_list">
+        <div>
           <UserList users={response.data} />
           <PaginationEndlessRibbon
             isLoading={isLoading}
@@ -35,18 +36,18 @@ export const Result = ({ search }) => {
 
 const UserList = ({ users }) => {
   return users.map((country) => (
-    <div className="count_user" key={country._id}>
+    <div className={styles.countUser} key={country._id}>
       <img
-        className="user_image"
+        className={styles.userImage}
         alt={country.username}
         src={country.avatar?.url || DefaultAvatar}
       />
       <div>
-        <div className="user__name">
+        <div className={styles.userName}>
           {country.firstName} {country.lastName}
         </div>
-        <div className="user__mail"> @{country.username}</div>
-        <div className="user__info"> {country.description}</div>
+        <div className={styles.userMail}> @{country.username}</div>
+        <div className={styles.userInfo}> {country.description}</div>
       </div>
       <div>{country.isOnline}</div>
     </div>
