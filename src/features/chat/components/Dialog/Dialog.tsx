@@ -8,10 +8,12 @@ import {
   PicturesIcon,
   VideoIcon,
 } from '@/assets/icons'
+import { useGetChat } from '@/features/chat/api/getChat'
 
 import styles from './styles.module.scss'
 
 export const Dialog = () => {
+  const { data: response } = useGetChat({ config: {} })
   return (
     <div className={styles.chatArea}>
       <div className={styles.chatAreaHeader}>
@@ -48,20 +50,9 @@ export const Dialog = () => {
             <div className={styles.chatMsgText}>
               <p>Adaptogen taiyaki austin jean shorts brunch</p>
             </div>
-            <div className={styles.chatMsgText}>
-              <img
-                src="https://media0.giphy.com/media/yYSSBtDgbbRzq/giphy.gif?cid=ecf05e47344fb5d835f832a976d1007c241548cc4eea4e7e&rid=giphy.gif"
-                alt={'imageass'}
-              />
-            </div>
-            <div className={styles.chatMsgText}>
-              <p>
-                Neque gravida in fermentum et sollicitudin ac orci phasellus egestas.
-                Pretium lectus quam id leo.
-              </p>
-            </div>
           </div>
         </div>
+
         <div className={clsx(styles.chatMsg, styles.owner)}>
           <div className={clsx(styles.chatMsgProfile)}>
             <img
@@ -72,9 +63,6 @@ export const Dialog = () => {
             <div className={styles.chatMsgDate}>Message seen 1.22pm</div>
           </div>
           <div className={styles.chatMsgContent}>
-            <div className={styles.chatMsgText}>
-              <p>Adaptogen taiyaki austin jean shorts brunch</p>
-            </div>
             <div className={styles.chatMsgText}>
               <p>Adaptogen taiyaki austin jean shorts brunch</p>
             </div>

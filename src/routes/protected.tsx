@@ -6,7 +6,7 @@ const { ChatRoutes } = lazyImport(() => import('@/features/chat'), 'ChatRoutes')
 
 export const protectedRoutes = [
   {
-    path: '/chat',
+    path: '/chat/*',
     element: <ChatRoutes />,
   },
   {
