@@ -7,7 +7,7 @@ import { FieldWrapper, FieldWrapperPassThroughProps } from '@/components/Form'
 import styles from './styles.module.scss'
 
 interface InputFieldProps extends FieldWrapperPassThroughProps {
-  type?: 'text' | 'password' | 'email'
+  type?: 'text' | 'password' | 'email' | 'file'
   className?: string
   registration: Partial<UseFormRegisterReturn>
 }
