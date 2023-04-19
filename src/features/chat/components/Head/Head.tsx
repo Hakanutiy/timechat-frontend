@@ -1,14 +1,20 @@
 import clsx from 'clsx'
 
 import { DarkLightIcon, LogoIcon, SettingIcon } from '@/assets/icons'
+import { MainModal } from '@/components/Modal'
+import { useGetMe } from '@/features/chat/api/getMe'
+import { Profile } from '@/features/chat/components/Profile'
 import { useTheme } from '@/hooks/useTheme'
+import { useUiStore } from '@/stores/ui'
 
 import { UserSearch } from '../UserSearch'
 import styles from './styles.module.scss'
 
 export const Head = () => {
   const { theme, setTheme } = useTheme()
-
+  const { data } = useGetMe({
+    config: {},
+  })
   const handleThemeClick = () => {
     if (theme === 'light') {
       setTheme('dark')
@@ -17,7 +23,7 @@ export const Head = () => {
       setTheme('light')
     }
   }
-
+  const { setCurrentModal } = useUiStore()
   return (
     <div className={styles.header}>
       <div className={styles.logo}>
@@ -33,10 +39,16 @@ export const Head = () => {
         <div className={clsx(styles.settings)}>
           <SettingIcon />
         </div>
-        <img
-          className={clsx(styles.userProfile, styles.accountProfile)}
-          src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3364143/download+%281%29.png"
-          alt="img-profile"></img>
+
+        <button onClick={() => setCurrentModal('profile')}>
+          <img
+            className={clsx(styles.userProfile, styles.accountProfile)}
+            src={data?.avatar?.url}
+            alt="img-profile"></img>
+        </button>
+        <MainModal modalId={'profile'}>
+          <Profile />
+        </MainModal>
       </div>
     </div>
   )

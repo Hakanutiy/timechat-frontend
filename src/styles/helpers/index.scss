@@ -54,6 +54,10 @@
   justify-content: center;
 }
 
+.hidden {
+  display: none;
+}
+
 .hidden-md {
   @media (max-width: $break-md) {
     display: none !important;

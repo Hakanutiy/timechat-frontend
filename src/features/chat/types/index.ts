@@ -25,7 +25,7 @@ export interface Chat {
   messages: Message[]
 }
 
-interface Message {
+export interface Message {
   _id: number
   text: string
 

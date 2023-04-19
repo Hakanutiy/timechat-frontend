@@ -1,23 +1,21 @@
-$userNameSize: 16px;
-$userImageHeight: 45px;
-$userImageWidth: 45px;
+.profileSetting {
+}
 
 .countUser {
   display: flex;
-  margin-top: 20px;
   padding-left: 15px;
 }
 
 .userImage {
-  width: $userImageWidth;
-  height: $userImageHeight;
-  border-radius: 50%;
+  width: 75px;
+  height: 75px;
   object-fit: cover;
+  border-radius: 50%;
 }
 
 .userName {
   color: var(--chat-text-color);
-  font-size: $userNameSize;
+  font-size: 16px;
   font-weight: initial;
   padding-left: 15px;
 }
@@ -28,7 +26,11 @@ $userImageWidth: 45px;
   padding-left: 15px;
 }
 
-.userInfo {
+.description {
   font-size: 10px;
-  margin-left: 10px;
+  padding-left: 15px;
+}
+
+.buttonUpdate {
+  margin-bottom: 15px;
 }
