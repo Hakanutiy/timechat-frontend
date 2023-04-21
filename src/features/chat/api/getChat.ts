@@ -1,5 +1,4 @@
 import { useQuery } from 'react-query'
-import { useNavigate } from 'react-router-dom'
 
 import { Chat } from '@/features/chat'
 import { fetcher } from '@/lib/api'
@@ -15,10 +14,12 @@ interface UseGetUsersOptions {
 }
 type QueryFnType = typeof getChat
 
+export const getChatQueryKey = 'chat'
+
 export const useGetChat = ({ config, chatId }: UseGetUsersOptions) => {
   return useQuery<ExtractFnReturnType<QueryFnType>>({
     ...config,
-    queryKey: ['chat', chatId],
+    queryKey: [getChatQueryKey, chatId],
     queryFn: () => getChat(chatId),
   })
 }

@@ -24,10 +24,12 @@ interface UseGetUsersOptions {
 }
 type QueryFnType = typeof getUsers
 
+export const getChatsQueryKey = 'chats'
+
 export const useGetChats = ({ config, filters }: UseGetUsersOptions) => {
   return useQuery<ExtractFnReturnType<QueryFnType>>({
     ...config,
-    queryKey: ['chats', filters],
+    queryKey: [getChatsQueryKey, filters],
     queryFn: () => getUsers(filters),
   })
 }

@@ -1,13 +1,19 @@
+import { getChatQueryKey } from '@/features/chat/api/getChat'
+import { getChatsQueryKey } from '@/features/chat/api/getChats'
+import { queryClient } from '@/lib/react-query'
 import { useSocketSubscription } from '@/lib/socket'
 
 import { Chat, Message } from '../types'
 
 export const useSubscribeMessage = (chatId) => {
-  return useSocketSubscription<{ chatId: string } & Message, Chat>('chat_message', {
-    queryKey: 'chat',
-    updater: (data, prevQueryData) => {
-      if (data.chatId !== chatId) return prevQueryData
-      return { ...prevQueryData, messages: [...prevQueryData.messages, data] }
+  return useSocketSubscription<{ chatId: string } & Message>('chat_message', {
+    onMessage: async (data) => {
+      await queryClient.refetchQueries(getChatsQueryKey)
+      const prevQueryData = queryClient.getQueryData<Chat>([getChatQueryKey, chatId])
+      queryClient.setQueriesData([getChatQueryKey, chatId], {
+        ...prevQueryData,
+        messages: [...(prevQueryData?.messages ?? []), data],
+      })
     },
   })
 }

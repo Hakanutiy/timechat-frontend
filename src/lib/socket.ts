@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 
 import { API_URL } from '@/config'
-import { queryClient } from '@/lib/react-query'
 import { SocketService, SocketServiceOptions } from '@/lib/socket-service'
 import storage from '@/utils/storage'
 
@@ -42,29 +41,20 @@ const useConnectSocket = () => {
   return { socket, isSocketConnected }
 }
 
-export interface UseSocketSubscriptionOptions<TData, QueryData = TData> {
-  queryKey?: string
-  updater?: (data: TData, prevQueryData: QueryData) => unknown
+export interface UseSocketSubscriptionOptions<TData> {
   onMessage?: (data: TData) => void
 }
 
-export function useSocketSubscription<TData, QueryData = TData>(
+export function useSocketSubscription<TData>(
   event: string,
-  options: UseSocketSubscriptionOptions<TData, QueryData>,
+  options: UseSocketSubscriptionOptions<TData>,
 ) {
   const { isSocketConnected, socket } = useConnectSocket()
 
   useEffect(() => {
     if (!isSocketConnected) return
-    socket?.onMessage(event, async (data: TData) => {
-      const prevQueryData = queryClient
-        ?.getQueriesData(options?.queryKey)[0]
-        ?.at(1) as QueryData
-      let _updater: unknown = data
-      if (options?.updater) {
-        _updater = options.updater(data, prevQueryData)
-      }
-      queryClient.setQueriesData(options.queryKey, _updater)
+    socket?.onMessage(event, (data) => {
+      options?.onMessage && options.onMessage(data)
     })
   }, [isSocketConnected])
 }
