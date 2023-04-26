@@ -1,4 +1,5 @@
 .conversationArea {
+
   border-right: 1px solid var(--border-color);
   overflow-y: auto;
   overflow-x: hidden;
@@ -104,4 +105,21 @@
   flex-shrink: 0;
   background: var(--overlay-bg);
   height: 80px;
+}
+
+.msgProfileUsername{
+  display: flex;
+
+}
+
+
+.unreadMessage{
+  display: flex;
+  margin-left: 10px;
+  width: 20px;
+  height: 20px;
+  background-color: var(--theme-color);
+  align-items: center;
+  justify-content: center;
+border-radius: 50%;
 }

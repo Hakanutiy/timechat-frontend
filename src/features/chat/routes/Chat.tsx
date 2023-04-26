@@ -8,11 +8,9 @@ export const Chat = () => {
   const { chatId } = useParams()
   return (
     <MainLayout head={Head}>
-      <div className="wrapper">
-        <ConversationArea />
-        {!!chatId && <Dialog chatId={chatId} />}
-        <Setting />
-      </div>
+      <ConversationArea />
+      {!!chatId && <Dialog chatId={chatId} />}
+      <Setting />
     </MainLayout>
   )
 }

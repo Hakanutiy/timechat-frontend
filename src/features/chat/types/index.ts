@@ -16,6 +16,7 @@ interface Image {
 }
 
 export interface Chat {
+  _id: string
   name: string
 
   preview: Image

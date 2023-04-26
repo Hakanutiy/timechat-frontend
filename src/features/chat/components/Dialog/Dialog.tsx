@@ -1,6 +1,5 @@
 import clsx from 'clsx'
-import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useEffect, useRef, useState } from 'react'
 
 import {
   AddIcon,
@@ -10,9 +9,12 @@ import {
   PicturesIcon,
   VideoIcon,
 } from '@/assets/icons'
+import { AlwaysScrollToBottom } from '@/components/AlwaysScrollToBottom/AlwaysScrollToBottom'
 import { useGetChat } from '@/features/chat/api/getChat'
 import { useGetMe } from '@/features/chat/api/getMe'
 import { useSendMessage } from '@/features/chat/api/sendMessage'
+import { useSendReadMessage } from '@/features/chat/api/sendMessageRead'
+import { useSubscribeMessageRead } from '@/features/chat/api/subscribeMessageRead'
 import { formatDate } from '@/utils/date'
 
 import { useSubscribeMessage } from '../../api/subscribeMessage'
@@ -23,9 +25,17 @@ export const Dialog = ({ chatId }) => {
   const [messageText, setMessageText] = useState('')
   const { data: chat } = useGetChat({ config: {}, chatId })
   const sendMessage = useSendMessage()
+
   useSubscribeMessage(chatId)
   const onSendMessage = () => {
     sendMessage({ chatId, text: messageText })
+    setMessageText('')
+  }
+
+  const handleKeyProps = (e) => {
+    if (e.key === 'Enter') {
+      onSendMessage()
+    }
   }
   return (
     <div className={styles.chatArea}>
@@ -49,30 +59,7 @@ export const Dialog = ({ chatId }) => {
           <span>+4</span>
         </div>
       </div>
-      <div className={styles.chatAreaMain}>
-        {chat?.messages.map((message) => (
-          <div
-            key={message._id}
-            className={clsx(
-              styles.chatMsg,
-              message.sender._id == me._id && styles.owner,
-            )}>
-            <div className={clsx(styles.chatMsgProfile)}>
-              <img
-                className={clsx(styles.chatMsgImg)}
-                src={message.sender.avatar.url}
-                alt=""
-              />
-              <div className={styles.chatMsgDate}>{formatDate(message.createdAt)}</div>
-            </div>
-            <div className={styles.chatMsgContent}>
-              <div className={styles.chatMsgText}>
-                <p>{message.text}</p>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
+      <MessageChat chatId={chatId} me={me} chat={chat} />
       <div className={styles.chatAreaFooter}>
         <VideoIcon />
         <ImageIcon />
@@ -83,12 +70,61 @@ export const Dialog = ({ chatId }) => {
           value={messageText}
           type="text"
           placeholder="Type something here..."
+          onKeyDown={handleKeyProps}
         />
-        <button onClick={onSendMessage}>
+        <button>
           <EmojiIcon />
         </button>
         <LikeIcon />
       </div>
+    </div>
+  )
+}
+
+const MessageChat = ({ chatId, chat, me }) => {
+  const elementRef = useRef(null)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) =>
+      setIsVisible(entry.isIntersecting),
+    )
+
+    observer.observe(elementRef.current)
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [elementRef])
+
+  const sendReadMessage = useSendReadMessage()
+  useSubscribeMessageRead(chatId)
+  if (isVisible) {
+    sendReadMessage({ chatId, messageId: chat._id })
+  }
+  return (
+    <div className={styles.chatAreaMain}>
+      {chat?.messages.map((message) => (
+        <div
+          ref={elementRef}
+          key={message._id}
+          className={clsx(styles.chatMsg, message.sender._id == me._id && styles.owner)}>
+          <div className={clsx(styles.chatMsgProfile)}>
+            <img
+              className={clsx(styles.chatMsgImg)}
+              src={message.sender.avatar.url}
+              alt=""
+            />
+            <div className={styles.chatMsgDate}>{formatDate(message.createdAt)}</div>
+          </div>
+          <div className={styles.chatMsgContent}>
+            <div className={styles.chatMsgText}>
+              <p>{message.text}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+      <AlwaysScrollToBottom />
     </div>
   )
 }

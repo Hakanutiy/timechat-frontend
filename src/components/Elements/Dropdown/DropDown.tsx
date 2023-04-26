@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+
+import { useOnClickOutside } from '@/hooks/useOnClickOutside'
 
 import styles from './styles.module.scss'
 interface DropdownProps {
@@ -7,13 +9,16 @@ interface DropdownProps {
 }
 
 export const Dropdown: React.FC<DropdownProps> = ({ children, trigger }) => {
-  const [open, setOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+  const $dropdown = useRef()
+
+  useOnClickOutside($dropdown, () => setIsOpen(false))
 
   return (
     <>
-      {trigger({ open: () => setOpen(true), close: () => setOpen(false) })}
-      <div className={styles.dropdown}>
-        {open ? <div className={styles.menu}>{children}</div> : null}
+      {trigger({ open: () => setIsOpen(true), close: () => setIsOpen(false) })}
+      <div className={styles.dropdown} ref={$dropdown}>
+        {isOpen ? <div className={styles.menu}>{children}</div> : null}
       </div>
     </>
   )

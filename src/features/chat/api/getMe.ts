@@ -13,10 +13,12 @@ interface UseGetUsersOptions {
 }
 type QueryFnType = typeof getMe
 
+export const getUserMeQueryKey = 'userMe'
+
 export const useGetMe = ({ config }: UseGetUsersOptions) => {
   return useQuery<ExtractFnReturnType<QueryFnType>>({
     ...config,
-    queryKey: ['userMe'],
+    queryKey: [getUserMeQueryKey],
     queryFn: () => getMe(),
   })
 }

@@ -22,7 +22,7 @@ export const ConversationArea = () => {
       {isLoading ? (
         <div>Loading...</div>
       ) : response?.data?.length ? (
-        <div>
+        <div className={clsx(styles.conversationArea, 'hidden-sm', 'area')}>
           <ChatList chats={response.data} />
           <PaginationEndlessRibbon
             isLoading={isLoading}
@@ -39,34 +39,27 @@ export const ConversationArea = () => {
 }
 
 const ChatList = ({ chats }) => {
-  return (
-    <>
-      {chats.map((chat) => (
-        <Link
-          to={`/chat/${chat._id}`}
-          key={chat.id}
-          className={clsx(styles.conversationArea, 'hidden-sm', 'area')}>
-          <div className={clsx(styles.msg, styles.msgOnline)}>
-            <img
-              className={styles.msgProfile}
-              src={chat.preview?.url || DefaultAvatar}
-              alt={chat?.name}
-            />
-            <div className={styles.msgProfileDetail}>
-              <div className={styles.msgProfileUsername}>
-                {chat?.name} {chat?.unreadMessageCount || null}
-              </div>
-              <div className={styles.msgProfileContent}>
-                <span className={styles.msgProfileMessage}>{chat?.lastMessage}</span>
-                <span className={styles.msgProfileDate}>
-                  {formatDate(chat?.lastMessageAt)}
-                </span>
-              </div>
-            </div>
+  return chats.map((chat) => (
+    <Link to={`/chat/${chat._id}`} key={chat.id}>
+      <div className={clsx(styles.msg, styles.msgOnline)}>
+        <img
+          className={styles.msgProfile}
+          src={chat.preview?.url || DefaultAvatar}
+          alt={chat?.name}
+        />
+        <div className={styles.msgProfileDetail}>
+          <div className={styles.msgProfileUsername}>
+            {chat?.name}
+            <div className={styles.unreadMessage}>{chat?.unreadMessageCount || null}</div>
           </div>
-        </Link>
-      ))}
-      <div className={styles.add}></div>
-    </>
-  )
+          <div className={styles.msgProfileContent}>
+            <span className={styles.msgProfileMessage}>{chat?.lastMessage}</span>
+            <span className={styles.msgProfileDate}>
+              {formatDate(chat?.lastMessageAt)}
+            </span>
+          </div>
+        </div>
+      </div>
+    </Link>
+  ))
 }

@@ -7,14 +7,14 @@ import { useDebounce } from '@/hooks/useDebounce'
 export const UserSearch = () => {
   const [search, setSearch] = useState('')
   const debouncedSearch = useDebounce(search)
+
   return (
     <Dropdown
-      trigger={({ open, close }) => (
+      trigger={({ open }) => (
         <input
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           onFocus={open}
-          onBlur={close}
           type="text"
           placeholder="Search..."
         />

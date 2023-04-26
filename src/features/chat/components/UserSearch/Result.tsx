@@ -3,6 +3,8 @@ import { useState } from 'react'
 import DefaultAvatar from '@/assets/image/DefaultAvatar.png'
 import { PaginationEndlessRibbon } from '@/components/Elements'
 import { useGetUsers } from '@/features/chat/api'
+import { useCreateChat } from '@/features/chat/api/createChat'
+import { useSubscribeChat } from '@/features/chat/api/subscribeChat'
 
 import styles from './styles.module.scss'
 export const Result = ({ search }) => {
@@ -35,21 +37,31 @@ export const Result = ({ search }) => {
 }
 
 const UserList = ({ users }) => {
-  return users.map((country) => (
-    <div className={styles.countUser} key={country._id}>
+  const createChat = useCreateChat()
+
+  useSubscribeChat()
+  const onCreateChat = (userId) => {
+    createChat({ senders: [userId] })
+  }
+
+  return users.map((user) => (
+    <button
+      onClick={() => onCreateChat(user._id)}
+      className={styles.countUser}
+      key={user._id}>
       <img
         className={styles.userImage}
-        alt={country.username}
-        src={country.avatar?.url || DefaultAvatar}
+        alt={user.username}
+        src={user.avatar?.url || DefaultAvatar}
       />
       <div>
         <div className={styles.userName}>
-          {country.firstName} {country.lastName}
+          {user.firstName} {user.lastName}
         </div>
-        <div className={styles.userMail}> @{country.username}</div>
-        <div className={styles.userInfo}> {country.description}</div>
+        <div className={styles.userMail}> @{user.username}</div>
+        <div className={styles.userInfo}> {user.description}</div>
       </div>
-      <div>{country.isOnline}</div>
-    </div>
+      <div>{user.isOnline}</div>
+    </button>
   ))
 }
