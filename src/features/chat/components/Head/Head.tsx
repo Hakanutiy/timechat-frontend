@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 
 import { DarkLightIcon, LogoIcon, SettingIcon } from '@/assets/icons'
+import { ModalWindow } from '@/components/Elements/ModalWindow'
 import { MainModal } from '@/components/Modal'
 import { useGetMe } from '@/features/chat/api/getMe'
 import { Profile } from '@/features/chat/components/Profile'
