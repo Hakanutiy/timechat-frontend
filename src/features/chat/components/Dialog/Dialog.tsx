@@ -11,6 +11,7 @@ import {
 } from '@/assets/icons'
 import { AlwaysScrollToBottom } from '@/components/AlwaysScrollToBottom/AlwaysScrollToBottom'
 import { useGetChat } from '@/features/chat/api/getChat'
+import { useGetChats } from '@/features/chat/api/getChats'
 import { useGetMe } from '@/features/chat/api/getMe'
 import { useSendMessage } from '@/features/chat/api/sendMessage'
 import { useSendReadMessage } from '@/features/chat/api/sendMessageRead'
@@ -24,6 +25,7 @@ export const Dialog = ({ chatId }) => {
   const { data: me } = useGetMe({ config: {} })
   const [messageText, setMessageText] = useState('')
   const { data: chat } = useGetChat({ config: {}, chatId })
+  const { data: user } = useGetChats({ config: {} })
   const sendMessage = useSendMessage()
 
   useSubscribeMessage(chatId)
@@ -40,7 +42,7 @@ export const Dialog = ({ chatId }) => {
   return (
     <div className={styles.chatArea}>
       <div className={styles.chatAreaHeader}>
-        <div className={styles.chatAreaTitle}>CodePen Group</div>
+        <div className={styles.chatAreaTitle}></div>
         <div className={styles.chatAreaGroup}>
           <img
             className={styles.chatAreaProfile}
@@ -90,7 +92,7 @@ const MessageChat = ({ chatId, chat, me }) => {
       setIsVisible(entry.isIntersecting),
     )
 
-    observer.observe(elementRef.current)
+    if (elementRef.current) observer.observe(elementRef.current)
 
     return () => {
       observer.disconnect()
@@ -104,7 +106,7 @@ const MessageChat = ({ chatId, chat, me }) => {
   }
   return (
     <div className={styles.chatAreaMain}>
-      {chat?.messages.map((message) => (
+      {chat?.messages?.map((message) => (
         <div
           ref={elementRef}
           key={message._id}

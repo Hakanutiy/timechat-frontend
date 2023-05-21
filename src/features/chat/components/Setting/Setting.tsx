@@ -35,7 +35,7 @@ export const Setting = () => {
         <div className={clsx(styles.msgProfile, styles.group)}>
           <img className={styles.img} src={chat?.preview?.url} alt={chat?.name} />
         </div>
-        <div className={styles.detailTitle}>CodePen Group</div>
+        <div className={styles.detailTitle}>{chat?.name}</div>
         <div className={styles.detailSubtitle}>Created by Aysenur, 1 May 2020</div>
         <div className={styles.detailButtons}>
           <button className={styles.detailButton}>

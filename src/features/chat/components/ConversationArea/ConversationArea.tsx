@@ -50,7 +50,11 @@ const ChatList = ({ chats }) => {
         <div className={styles.msgProfileDetail}>
           <div className={styles.msgProfileUsername}>
             {chat?.name}
-            <div className={styles.unreadMessage}>{chat?.unreadMessageCount || null}</div>
+            {!!chat?.unreadMessageCount && (
+              <div className={styles.unreadMessage}>
+                {chat?.unreadMessageCount || null}
+              </div>
+            )}
           </div>
           <div className={styles.msgProfileContent}>
             <span className={styles.msgProfileMessage}>{chat?.lastMessage}</span>

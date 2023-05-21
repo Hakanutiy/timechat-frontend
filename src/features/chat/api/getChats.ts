@@ -20,7 +20,7 @@ const getUsers = (filters: GetChatsFilters): Promise<DTOResponseGetChats> => {
 
 interface UseGetUsersOptions {
   config: QueryConfig<QueryFnType>
-  filters: GetChatsFilters
+  filters?: GetChatsFilters
 }
 type QueryFnType = typeof getUsers
 

@@ -43,6 +43,7 @@ const useConnectSocket = () => {
 
 export interface UseSocketSubscriptionOptions<TData> {
   onMessage?: (data: TData) => void
+  deps?: unknown[]
 }
 
 export function useSocketSubscription<TData>(
@@ -56,7 +57,7 @@ export function useSocketSubscription<TData>(
     socket?.onMessage(event, (data) => {
       options?.onMessage && options.onMessage(data)
     })
-  }, [isSocketConnected])
+  }, [isSocketConnected, ...(options?.deps || [])])
 }
 export function useSocketEmit<R = unknown>(event: string) {
   const { socket } = useConnectSocket()
