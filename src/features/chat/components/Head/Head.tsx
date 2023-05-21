@@ -8,6 +8,7 @@ import { Profile } from '@/features/chat/components/Profile'
 import { useTheme } from '@/hooks/useTheme'
 import { useUiStore } from '@/stores/ui'
 
+import { UserSearch } from '../UserSearch'
 import styles from './styles.module.scss'
 
 export const Head = () => {
@@ -30,7 +31,7 @@ export const Head = () => {
         <LogoIcon />
       </div>
       <div className={styles.searchBar}>
-        <input type="text" placeholder="Search..." />
+        <UserSearch />
       </div>
       <div className={styles.userSettings}>
         <button className={styles.darkLight} onClick={handleThemeClick}>

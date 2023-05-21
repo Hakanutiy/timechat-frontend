@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import { useParams } from 'react-router-dom'
 
 import {
   CallGroupIcon,
@@ -6,6 +7,8 @@ import {
   SharedPhotoIcon,
   VideoChatIcon,
 } from '@/assets/icons'
+import { useGetChat } from '@/features/chat/api/getChat'
+import { useGetMe } from '@/features/chat/api/getMe'
 import { useTheme } from '@/hooks/useTheme'
 
 import styles from './styles.module.scss'
@@ -23,24 +26,16 @@ export const Setting = () => {
   const handleThemeOrangeClick = () => {
     setThemeMessage('orange')
   }
+  const { chatId } = useParams()
+  const { data: me } = useGetMe({ config: {} })
+  const { data: chat } = useGetChat({ config: {}, chatId })
   return (
     <div className={clsx(styles.detailArea, 'hidden-md', 'area')}>
       <div className={clsx(styles.detailAreaHeader)}>
         <div className={clsx(styles.msgProfile, styles.group)}>
-          <svg
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth="2"
-            fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="css-i6dzq1">
-            <path d="M12 2l10 6.5v7L12 22 2 15.5v-7L12 2zM12 22v-6.5" />
-            <path d="M22 8.5l-10 7-10-7" />
-            <path d="M2 15.5l10-7 10 7M12 2v6.5" />
-          </svg>
+          <img className={styles.img} src={chat?.preview?.url} alt={chat?.name} />
         </div>
-        <div className={styles.detailTitle}>CodePen Group</div>
+        <div className={styles.detailTitle}>{chat?.name}</div>
         <div className={styles.detailSubtitle}>Created by Aysenur, 1 May 2020</div>
         <div className={styles.detailButtons}>
           <button className={styles.detailButton}>

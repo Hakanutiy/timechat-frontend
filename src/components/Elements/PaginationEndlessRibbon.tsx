@@ -30,5 +30,3 @@ export const PaginationEndlessRibbon: FC<PaginationEndlessRibbonProps> = ({
 
   return <div ref={lastElementRef} />
 }
-
-export default PaginationEndlessRibbon

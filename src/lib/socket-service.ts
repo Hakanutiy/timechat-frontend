@@ -20,38 +20,32 @@ class SocketService {
     throw new Error('onClose method of socketService should be overriden')
   }
   onMessage = (ev: string, cb: (e) => void): void => {
-    if (this.socket.connected) {
-      this.socket.on(ev, cb)
-    }
+    this.socket.on(ev, cb)
   }
   emit = function emit<T>(ev: string, ...payload: unknown[]): T {
-    if (this.socket.connected) {
-      return this.socket.emit(ev, ...payload)
-    }
+    return this.socket.emit(ev, ...payload)
   }
   onError = (_: Error): void => {
     throw new Error('onError method of socketService should be overriden')
   }
 
   destroy = (): void => {
-    if (this.socket.connected) {
-      this.socket.off('connect_error', async (e) => {
-        this.onError(e)
-      })
-      this.socket.off('message', this.onMessage)
-      this.socket.off('disconnect', (e) => {
-        this.onClose(e)
-      })
-      this.socket.off('connect', () => {
-        this.onOpen()
-      })
+    this.socket.off('connect_error', async (e) => {
+      this.onError(e)
+    })
+    this.socket.off('message', this.onMessage)
+    this.socket.off('disconnect', (e) => {
+      this.onClose(e)
+    })
+    this.socket.off('connect', () => {
+      this.onOpen()
+    })
 
-      // https://github.com/socketio/socket.io-client/issues/1496
-      this.socket.removeAllListeners()
+    // https://github.com/socketio/socket.io-client/issues/1496
+    this.socket.removeAllListeners()
 
-      this.socket.close()
-      this.socket = null
-    }
+    this.socket.close()
+    this.socket = null
   }
 
   create = (options: Partial<SocketOptions>): void => {

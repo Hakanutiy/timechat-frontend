@@ -1,14 +1,22 @@
 import { useEffect, useState } from 'react'
 
 import { API_URL } from '@/config'
-import { queryClient } from '@/lib/react-query'
 import { SocketService, SocketServiceOptions } from '@/lib/socket-service'
 import storage from '@/utils/storage'
 
-const createSocket = (options?: SocketServiceOptions) => {
+const createSocket = (options?: Partial<SocketServiceOptions>) => {
   const socket = new SocketService({
-    socketUrl: API_URL,
+    onOpen(e) {
+      console.log(e, '||| onOpen - createSocket')
+    },
+    onClose(e) {
+      console.error(e, '||| onClose - createSocket')
+    },
+    onConnectError(e) {
+      console.error(e, '||| onConnectError - createSocket')
+    },
     ...options,
+    socketUrl: API_URL,
   })
   socket.create({
     auth: { token: storage.getTokens().accessToken },
@@ -16,44 +24,42 @@ const createSocket = (options?: SocketServiceOptions) => {
   return socket
 }
 
-export interface UseSocketSubscriptionOptions<TData, QueryData = TData> {
-  queryKey?: string
-  updater?: (data: TData, prevQueryData: QueryData) => unknown
-  onMessage?: (data: TData) => void
-}
-
-export function useSocketSubscription<TData, QueryData = TData>(
-  event: string,
-  options: UseSocketSubscriptionOptions<TData, QueryData>,
-) {
-  useEffect(() => {
-    const socket = createSocket()
-    socket.onMessage(event, (data: TData) => {
-      const prevQueryData = queryClient
-        .getQueriesData(options?.queryKey)
-        .at(1) as QueryData
-      let _updater: unknown = data
-      options?.onMessage && options.onMessage(data)
-      if (options?.updater) {
-        _updater = options.updater(data, prevQueryData)
-      }
-      queryClient.setQueriesData(options.queryKey, _updater)
-    })
-    return () => {
-      socket.destroy()
-    }
-  }, [queryClient])
-}
-
-export const useSocketEmit = (event: string) => {
+const useConnectSocket = () => {
   const [socket, setSocket] = useState<SocketService>()
-  const emit = (...args: unknown[]) => socket?.emit(event, ...args)
+  const [isSocketConnected, setIsSocketConnected] = useState(false)
   useEffect(() => {
-    const _socket = createSocket()
+    const _socket = createSocket({
+      onOpen() {
+        setIsSocketConnected(true)
+      },
+    })
     setSocket(_socket)
     return () => {
       _socket.destroy()
     }
   }, [])
-  return emit
+  return { socket, isSocketConnected }
+}
+
+export interface UseSocketSubscriptionOptions<TData> {
+  onMessage?: (data: TData) => void
+  deps?: unknown[]
+}
+
+export function useSocketSubscription<TData>(
+  event: string,
+  options: UseSocketSubscriptionOptions<TData>,
+) {
+  const { isSocketConnected, socket } = useConnectSocket()
+
+  useEffect(() => {
+    if (!isSocketConnected) return
+    socket?.onMessage(event, (data) => {
+      options?.onMessage && options.onMessage(data)
+    })
+  }, [isSocketConnected, ...(options?.deps || [])])
+}
+export function useSocketEmit<R = unknown>(event: string) {
+  const { socket } = useConnectSocket()
+  return (...args: R[]) => socket?.emit(event, ...args)
 }

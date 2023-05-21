@@ -6,6 +6,7 @@ export const ChatRoutes = () => {
     <div>
       <Routes>
         <Route path="" element={<Chat />}></Route>
+        <Route path=":chatId" element={<Chat />}></Route>
       </Routes>
     </div>
   )

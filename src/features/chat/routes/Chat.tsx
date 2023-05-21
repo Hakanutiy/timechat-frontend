@@ -1,16 +1,16 @@
-import { MainLayout } from '@/components/Layout'
-import { useGetUsers } from '@/features/chat/api'
+import { useParams } from 'react-router-dom'
 
-import { ConversationArea, Dialog, Setting } from '../components'
+import { MainLayout } from '@/components/Layout'
+
+import { ConversationArea, Dialog, Head, Setting } from '../components'
 
 export const Chat = () => {
+  const { chatId } = useParams()
   return (
-    <MainLayout>
-      <div className="wrapper">
-        <ConversationArea />
-        <Dialog />
-        <Setting />
-      </div>
+    <MainLayout head={Head}>
+      <ConversationArea />
+      {!!chatId && <Dialog chatId={chatId} />}
+      <Setting />
     </MainLayout>
   )
 }
