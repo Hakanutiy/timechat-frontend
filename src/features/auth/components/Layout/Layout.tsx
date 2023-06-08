@@ -35,6 +35,5 @@ const NavigationLink: FC<NavigationLinkProps> = ({ subtext, label, to }) => (
     <Link to={to} className="ml-3 font-medium">
       {label}
     </Link>
-    <Snackbar />
   </p>
 )

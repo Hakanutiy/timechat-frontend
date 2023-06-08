@@ -9,6 +9,7 @@ import {
   PicturesIcon,
   VideoIcon,
 } from '@/assets/icons'
+import DefaultAvatar from '@/assets/image/DefaultAvatar.png'
 import { AlwaysScrollToBottom } from '@/components/AlwaysScrollToBottom/AlwaysScrollToBottom'
 import { useGetChat } from '@/features/chat/api/getChat'
 import { useGetChats } from '@/features/chat/api/getChats'
@@ -46,19 +47,9 @@ export const Dialog = ({ chatId }) => {
         <div className={styles.chatAreaGroup}>
           <img
             className={styles.chatAreaProfile}
-            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3364143/download+%283%29+%281%29.png"
-            alt=""
+            src={chat?.preview?.url || DefaultAvatar}
+            alt={chat?.preview?._id}
           />
-          <img
-            className={styles.chatAreaProfile}
-            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3364143/download+%282%29.png"
-            alt=""></img>
-          <img
-            className={styles.chatAreaProfile}
-            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3364143/download+%2812%29.png"
-            alt=""
-          />
-          <span>+4</span>
         </div>
       </div>
       <MessageChat chatId={chatId} me={me} chat={chat} />
@@ -114,7 +105,7 @@ const MessageChat = ({ chatId, chat, me }) => {
           <div className={clsx(styles.chatMsgProfile)}>
             <img
               className={clsx(styles.chatMsgImg)}
-              src={message.sender.avatar.url}
+              src={message.sender?.avatar?.url}
               alt=""
             />
             <div className={styles.chatMsgDate}>{formatDate(message.createdAt)}</div>

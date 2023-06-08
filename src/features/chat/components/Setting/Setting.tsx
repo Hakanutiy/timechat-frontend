@@ -7,6 +7,7 @@ import {
   SharedPhotoIcon,
   VideoChatIcon,
 } from '@/assets/icons'
+import DefaultAvatar from '@/assets/image/DefaultAvatar.png'
 import { useGetChat } from '@/features/chat/api/getChat'
 import { useGetMe } from '@/features/chat/api/getMe'
 import { useTheme } from '@/hooks/useTheme'
@@ -33,7 +34,11 @@ export const Setting = () => {
     <div className={clsx(styles.detailArea, 'hidden-md', 'area')}>
       <div className={clsx(styles.detailAreaHeader)}>
         <div className={clsx(styles.msgProfile, styles.group)}>
-          <img className={styles.img} src={chat?.preview?.url} alt={chat?.name} />
+          <img
+            className={styles.img}
+            src={chat?.preview?.url || DefaultAvatar}
+            alt={chat?.name}
+          />
         </div>
         <div className={styles.detailTitle}>{chat?.name}</div>
         <div className={styles.detailSubtitle}>Created by Aysenur, 1 May 2020</div>
