@@ -45,4 +45,5 @@ export interface ChatEntity {
   unreadMessageCount: number
   lastMessage: string
   lastMessageAt: Date
+  senderIds: string[]
 }

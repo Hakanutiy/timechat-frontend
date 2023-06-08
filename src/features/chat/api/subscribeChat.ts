@@ -12,6 +12,7 @@ export const useSubscribeChat = () => {
   const navigate = useNavigate()
   return useSocketSubscription<Chat>('new_chat', {
     onMessage: async (chat) => {
+      console.log(chat)
       const myId = chat.senders.find((item) => item._id === data._id)
       if (myId) {
         navigate(`/chat/${chat._id}`)

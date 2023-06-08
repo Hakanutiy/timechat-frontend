@@ -105,7 +105,7 @@ const MessageChat = ({ chatId, chat, me }) => {
           <div className={clsx(styles.chatMsgProfile)}>
             <img
               className={clsx(styles.chatMsgImg)}
-              src={message.sender?.avatar?.url}
+              src={message.sender?.avatar?.url || DefaultAvatar}
               alt=""
             />
             <div className={styles.chatMsgDate}>{formatDate(message.createdAt)}</div>
