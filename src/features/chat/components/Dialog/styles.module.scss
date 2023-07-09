@@ -79,6 +79,13 @@
 
 .chatMsgText {
   color: var(--chat-text-color);
+
+}
+
+.chatSetting{
+  width: 51px;
+  margin-left: auto;
+  margin-right: 10px;
 }
 
 .owner {
@@ -87,11 +94,52 @@
     margin-left: 0;
     margin-right: 12px;
     align-items: flex-end;
+
   }
   .chatMsgText {
     background-color: var(--theme-color);
     color: #fff;
     border-radius: 20px 20px 0 20px;
+
+
+
+  }
+
+  .chatAreaGroup {
+    flex-shrink: 0;
+    display: flex;
+    * {
+      border: 2px solid var(--theme-bg-color);
+    }
+    * + * {
+      margin-left: -5px;
+    }
+
+    span {
+      width: 32px;
+      height: 32px;
+      background-color: var(--button-bg-color);
+      color: var(--theme-color);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
+  .chatMsgPicture{
+    display: flex;
+    flex-direction: column;
+
+    max-width: 600px;
+    width: 100%;
+  }
+
+
+
+  .chatMsgPicture > *{
+    margin-top: 5px;
   }
   .chatMsgDate {
     left: auto;

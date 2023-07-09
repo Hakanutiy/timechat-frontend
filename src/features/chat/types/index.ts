@@ -10,7 +10,7 @@ export interface User {
   updatedAt: string
 }
 
-interface Image {
+export interface Image {
   _id: string
   url: string
 }

@@ -1,5 +1,6 @@
 import { getChatQueryKey } from '@/features/chat/api/getChat'
 import { getChatsQueryKey } from '@/features/chat/api/getChats'
+import { getChatImagesQueryKey } from '@/features/chat/api/useGetChatImages'
 import { queryClient } from '@/lib/react-query'
 import { useSocketSubscription } from '@/lib/socket'
 

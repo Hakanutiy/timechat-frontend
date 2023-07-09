@@ -9,20 +9,24 @@ import {
   PicturesIcon,
   VideoIcon,
 } from '@/assets/icons'
+import { MoreIcon } from '@/assets/icons/js/dialog/MoreIcon'
 import DefaultAvatar from '@/assets/image/DefaultAvatar.png'
 import { AlwaysScrollToBottom } from '@/components/AlwaysScrollToBottom/AlwaysScrollToBottom'
+import { MainModal } from '@/components/Modal'
 import { useGetChat } from '@/features/chat/api/getChat'
 import { useGetChats } from '@/features/chat/api/getChats'
 import { useGetMe } from '@/features/chat/api/getMe'
-import { useSendMessage } from '@/features/chat/api/sendMessage'
+import { SendMessageOptions, useSendMessage } from '@/features/chat/api/sendMessage'
 import { useSendReadMessage } from '@/features/chat/api/sendMessageRead'
 import { useSubscribeMessageRead } from '@/features/chat/api/subscribeMessageRead'
+import { SendPicture } from '@/features/chat/components/SendPicture/SendPicture'
+import { useUiStore } from '@/stores/ui'
 import { formatDate } from '@/utils/date'
 
 import { useSubscribeMessage } from '../../api/subscribeMessage'
 import styles from './styles.module.scss'
 
-export const Dialog = ({ chatId }) => {
+export const Dialog = ({ chatId, chatPicture, setChatPicture }) => {
   const { data: me } = useGetMe({ config: {} })
   const [messageText, setMessageText] = useState('')
   const { data: chat } = useGetChat({ config: {}, chatId })
@@ -30,20 +34,27 @@ export const Dialog = ({ chatId }) => {
   const sendMessage = useSendMessage()
 
   useSubscribeMessage(chatId)
-  const onSendMessage = () => {
-    sendMessage({ chatId, text: messageText })
+  const onSendMessage = (data: Omit<SendMessageOptions, 'chatId'>) => {
+    sendMessage({ chatId, ...data })
     setMessageText('')
   }
 
   const handleKeyProps = (e) => {
     if (e.key === 'Enter') {
-      onSendMessage()
+      onSendMessage({ text: messageText })
     }
   }
+  const { setCurrentModal } = useUiStore()
   return (
     <div className={styles.chatArea}>
       <div className={styles.chatAreaHeader}>
         <div className={styles.chatAreaTitle}></div>
+        <button
+          onClick={() => setChatPicture(!chatPicture)}
+          className={styles.chatSetting}>
+          <MoreIcon />
+        </button>
+
         <div className={styles.chatAreaGroup}>
           <img
             className={styles.chatAreaProfile}
@@ -57,7 +68,12 @@ export const Dialog = ({ chatId }) => {
         <VideoIcon />
         <ImageIcon />
         <AddIcon />
-        <PicturesIcon />
+        <button onClick={() => setCurrentModal('pictureSend')}>
+          <PicturesIcon />
+        </button>
+        <MainModal modalId={'pictureSend'}>
+          <SendPicture onSendMessage={onSendMessage} />
+        </MainModal>
         <input
           onChange={(e) => setMessageText(e.target.value)}
           value={messageText}
@@ -113,6 +129,12 @@ const MessageChat = ({ chatId, chat, me }) => {
           <div className={styles.chatMsgContent}>
             <div className={styles.chatMsgText}>
               <p>{message.text}</p>
+              <div className={styles.chatMsgPicture}>
+                {message.images?.[0] &&
+                  message.images.map((image) => (
+                    <img key={image._id} src={image.url} alt={image.url} />
+                  ))}
+              </div>
             </div>
           </div>
         </div>
