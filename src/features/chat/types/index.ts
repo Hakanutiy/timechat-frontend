@@ -19,6 +19,7 @@ export interface Chat {
   _id: string
   name: string
 
+  isTyping: boolean
   preview: Image
 
   senders: User[]
@@ -38,11 +39,13 @@ export interface Message {
 }
 
 export interface ChatEntity {
-  _id: number
+  _id: string
   isSenderOnline: boolean
   name: string
   preview: Image
   unreadMessageCount: number
+
+  isTyping: boolean
   lastMessage: string
   lastMessageAt: Date
   senderIds: string[]

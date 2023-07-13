@@ -16,7 +16,7 @@ import { useTheme } from '@/hooks/useTheme'
 import { useUiStore } from '@/stores/ui'
 
 import styles from './styles.module.scss'
-export const Setting = () => {
+export const Setting = ({ chatPicture }) => {
   const { setThemeMessage } = useTheme()
   const handleThemeBLueClick = () => {
     setThemeMessage('blue')
@@ -40,7 +40,13 @@ export const Setting = () => {
     setCountImage(countImage + 16)
   }
   return (
-    <div className={clsx(styles.detailArea, 'hidden-md', 'area')}>
+    <div
+      className={clsx(
+        styles.detailArea,
+        'hidden-md',
+        'area',
+        chatPicture && styles.detailAreaAnimationIsTrue,
+      )}>
       <div className={clsx(styles.detailAreaHeader)}>
         <div className={clsx(styles.msgProfile, styles.group)}>
           <img

@@ -18,8 +18,11 @@ import { useGetChats } from '@/features/chat/api/getChats'
 import { useGetMe } from '@/features/chat/api/getMe'
 import { SendMessageOptions, useSendMessage } from '@/features/chat/api/sendMessage'
 import { useSendReadMessage } from '@/features/chat/api/sendMessageRead'
+import { useSendWriteMessage } from '@/features/chat/api/sendWriteMessage'
 import { useSubscribeMessageRead } from '@/features/chat/api/subscribeMessageRead'
+import { useSubscribeWriteMessage } from '@/features/chat/api/subscribeWriteMessage'
 import { SendPicture } from '@/features/chat/components/SendPicture/SendPicture'
+import { useDebounce } from '@/hooks/useDebounce'
 import { useUiStore } from '@/stores/ui'
 import { formatDate } from '@/utils/date'
 
@@ -31,27 +34,43 @@ export const Dialog = ({ chatId, chatPicture, setChatPicture }) => {
   const [messageText, setMessageText] = useState('')
   const { data: chat } = useGetChat({ config: {}, chatId })
   const { data: user } = useGetChats({ config: {} })
+
   const sendMessage = useSendMessage()
+  const sendWriteMessage = useSendWriteMessage()
 
   useSubscribeMessage(chatId)
+  useSubscribeWriteMessage(chatId)
   const onSendMessage = (data: Omit<SendMessageOptions, 'chatId'>) => {
     sendMessage({ chatId, ...data })
     setMessageText('')
+  }
+  const handleChatPicture = () => {
+    setChatPicture(!chatPicture)
+  }
+
+  const handleOnChange = (e) => {
+    setMessageText(e.target.value)
   }
 
   const handleKeyProps = (e) => {
     if (e.key === 'Enter') {
       onSendMessage({ text: messageText })
     }
+    sendWriteMessage({ chatId, isTyping: true })
   }
+
+  const handleKeyUp = () => {
+    setTimeout(() => {
+      sendWriteMessage({ chatId, isTyping: false })
+    }, 3500)
+  }
+
   const { setCurrentModal } = useUiStore()
   return (
     <div className={styles.chatArea}>
       <div className={styles.chatAreaHeader}>
         <div className={styles.chatAreaTitle}></div>
-        <button
-          onClick={() => setChatPicture(!chatPicture)}
-          className={styles.chatSetting}>
+        <button onClick={handleChatPicture} className={styles.chatSetting}>
           <MoreIcon />
         </button>
 
@@ -64,6 +83,7 @@ export const Dialog = ({ chatId, chatPicture, setChatPicture }) => {
         </div>
       </div>
       <MessageChat chatId={chatId} me={me} chat={chat} />
+      {chat?.isTyping && <p className={styles.typingMessage}></p>}
       <div className={styles.chatAreaFooter}>
         <VideoIcon />
         <ImageIcon />
@@ -75,11 +95,12 @@ export const Dialog = ({ chatId, chatPicture, setChatPicture }) => {
           <SendPicture onSendMessage={onSendMessage} />
         </MainModal>
         <input
-          onChange={(e) => setMessageText(e.target.value)}
+          onChange={handleOnChange}
           value={messageText}
           type="text"
           placeholder="Type something here..."
           onKeyDown={handleKeyProps}
+          onKeyUp={handleKeyUp}
         />
         <button>
           <EmojiIcon />

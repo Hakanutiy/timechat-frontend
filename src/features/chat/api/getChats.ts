@@ -4,7 +4,7 @@ import { ChatEntity } from '@/features/chat'
 import { fetcher } from '@/lib/api'
 import { ExtractFnReturnType, QueryConfig } from '@/lib/react-query'
 
-interface DTOResponseGetChats {
+export interface DTOResponseGetChats {
   data: ChatEntity[]
   count: number
 }

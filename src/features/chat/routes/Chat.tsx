@@ -20,7 +20,7 @@ export const Chat = () => {
           chatId={chatId}
         />
       )}
-      {chatPicture && <Setting />}
+      {chatPicture && <Setting chatPicture={chatPicture} />}
     </MainLayout>
   )
 }

@@ -121,3 +121,27 @@
   justify-content: center;
   border-radius: 50%;
 }
+
+
+.typingMessage::after{
+  content: '';
+  animation: typing 1s infinite;
+}
+
+@keyframes typing {
+  0% {
+    content: 'Typing';
+  }
+
+  50% {
+    content: 'Typing.';
+  }
+  75% {
+    content: 'Typing..';
+  }
+
+  100% {
+    content: 'Typing...';
+  }
+
+}

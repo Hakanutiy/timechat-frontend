@@ -5,6 +5,9 @@ import DefaultAvatar from '@/assets/image/DefaultAvatar.png'
 import { PaginationEndlessRibbon } from '@/components/Elements'
 import { Link } from '@/components/Elements'
 import { useGetChats } from '@/features/chat/api/getChats'
+import { useSendWriteMessage } from '@/features/chat/api/sendWriteMessage'
+import { useSubscribeWriteMessage } from '@/features/chat/api/subscribeWriteMessage'
+import { useSubscribeWriteMessageChatList } from '@/features/chat/api/subscribeWriteMessageChatList'
 import { formatDate } from '@/utils/date'
 
 import styles from './styles.module.scss'
@@ -39,8 +42,9 @@ export const ConversationArea = () => {
 }
 
 const ChatList = ({ chats }) => {
+  useSubscribeWriteMessageChatList(chats._id)
   return chats.map((chat) => (
-    <Link to={`/chat/${chat._id}`} key={chat.id}>
+    <Link to={`/chat/${chat._id}`} key={chat._id}>
       <div className={clsx(styles.msg, styles.msgOnline)}>
         <img
           className={styles.msgProfile}
@@ -57,7 +61,13 @@ const ChatList = ({ chats }) => {
             )}
           </div>
           <div className={styles.msgProfileContent}>
-            <span className={styles.msgProfileMessage}>{chat?.lastMessage}</span>
+            <span className={styles.msgProfileMessage}>
+              {chat?.isTyping ? (
+                <p className={styles.typingMessage}></p>
+              ) : (
+                chat.lastMessage
+              )}
+            </span>
             <span className={styles.msgProfileDate}>
               {formatDate(chat?.lastMessageAt)}
             </span>
