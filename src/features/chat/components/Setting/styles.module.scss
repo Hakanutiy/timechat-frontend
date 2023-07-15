@@ -5,10 +5,9 @@
   display: flex;
   flex-direction: column;
   overflow: auto;
-
 }
 
-.detailAreaAnimationIsTrue{
+.detailAreaAnimationIsTrue {
   position: relative;
   opacity: 0;
   left: 100%;
@@ -25,7 +24,6 @@
     left: 0;
   }
 }
-
 
 .detailAreaHeader {
   display: flex;

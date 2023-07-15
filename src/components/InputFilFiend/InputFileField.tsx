@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { ChangeEvent, FC, useState } from 'react'
 import * as React from 'react'
 import { UseFormRegisterReturn, UseFormReturn } from 'react-hook-form'
 
@@ -10,6 +10,7 @@ interface InputFieldProps extends FieldWrapperPassThroughProps {
   className?: string
   registration: Partial<UseFormRegisterReturn>
   children: (url: string[]) => React.ReactNode
+  onChangeInput?: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
 export const readFileAsDataUrl = (file, callback) => {
@@ -24,7 +25,7 @@ export const InputFileField: FC<InputFieldProps> = ({
   label,
 
   registration,
-
+  onChangeInput,
   error,
   children,
 }) => {

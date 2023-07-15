@@ -122,8 +122,7 @@
   border-radius: 50%;
 }
 
-
-.typingMessage::after{
+.typingMessage::after {
   content: '';
   animation: typing 1s infinite;
 }
@@ -143,5 +142,4 @@
   100% {
     content: 'Typing...';
   }
-
 }

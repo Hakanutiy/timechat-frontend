@@ -102,9 +102,11 @@ export const Setting = ({ chatPicture }) => {
               .slice(0, countImage)
               .map((image) => <img key={image._id} src={image.url} alt={image.url} />)}
         </div>
-        <button onClick={CountImageMore} className={styles.viewMore}>
-          View More
-        </button>
+        {images?.length > countImage && (
+          <button onClick={CountImageMore} className={styles.viewMore}>
+            View More
+          </button>
+        )}
       </div>
     </div>
   )

@@ -13,7 +13,9 @@ export const LogOut = () => {
           <SettingIcon />
         </button>
       )}>
-      <Button onClick={signout}>Выйти </Button>
+      <Button className={styles.buttonExit} onClick={signout}>
+        Выйти
+      </Button>
     </Dropdown>
   )
 }

@@ -1,9 +1,39 @@
-.createImage {
-  min-width: 400px;
-  max-width: 400px;
-  width: 100%;
-  height: auto;
-  margin-right: 10px;
+.createContent {
+  position: relative;
+
+  .createImage {
+    min-width: 400px;
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    margin-right: 10px;
+    &:hover + .svgHover {
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 35px;
+        height: auto;
+      }
+      opacity: 1;
+    }
+  }
+
+  .svgHover {
+    position: absolute;
+    width: 35px;
+    height: auto;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .svgHover:hover {
+    opacity: 1;
+  }
 }
 
 .input {
