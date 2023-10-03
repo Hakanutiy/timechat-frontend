@@ -9,70 +9,99 @@ import {
   PicturesIcon,
   VideoIcon,
 } from '@/assets/icons'
+import { MoreIcon } from '@/assets/icons/js/dialog/MoreIcon'
+import DefaultAvatar from '@/assets/image/DefaultAvatar.png'
 import { AlwaysScrollToBottom } from '@/components/AlwaysScrollToBottom/AlwaysScrollToBottom'
+import { MainModal } from '@/components/Modal'
 import { useGetChat } from '@/features/chat/api/getChat'
 import { useGetChats } from '@/features/chat/api/getChats'
 import { useGetMe } from '@/features/chat/api/getMe'
-import { useSendMessage } from '@/features/chat/api/sendMessage'
+import { SendMessageOptions, useSendMessage } from '@/features/chat/api/sendMessage'
 import { useSendReadMessage } from '@/features/chat/api/sendMessageRead'
+import { useSendWriteMessage } from '@/features/chat/api/sendWriteMessage'
 import { useSubscribeMessageRead } from '@/features/chat/api/subscribeMessageRead'
+import { useSubscribeWriteMessage } from '@/features/chat/api/subscribeWriteMessage'
+import { CheckImage } from '@/features/chat/components/CheckImage/CheckImage'
+import { SendPicture } from '@/features/chat/components/SendPicture/SendPicture'
+import { useDebounce } from '@/hooks/useDebounce'
+import { useUiStore } from '@/stores/ui'
 import { formatDate } from '@/utils/date'
 
 import { useSubscribeMessage } from '../../api/subscribeMessage'
 import styles from './styles.module.scss'
 
-export const Dialog = ({ chatId }) => {
+export const Dialog = ({ chatId, chatPicture, setChatPicture }) => {
   const { data: me } = useGetMe({ config: {} })
   const [messageText, setMessageText] = useState('')
   const { data: chat } = useGetChat({ config: {}, chatId })
   const { data: user } = useGetChats({ config: {} })
+
   const sendMessage = useSendMessage()
+  const sendWriteMessage = useSendWriteMessage()
 
   useSubscribeMessage(chatId)
-  const onSendMessage = () => {
-    sendMessage({ chatId, text: messageText })
+  useSubscribeWriteMessage(chatId)
+  const onSendMessage = (data: Omit<SendMessageOptions, 'chatId'>) => {
+    sendMessage({ chatId, ...data })
     setMessageText('')
+  }
+  const handleChatPicture = () => {
+    setChatPicture(!chatPicture)
+  }
+
+  const handleOnChange = (e) => {
+    setMessageText(e.target.value)
   }
 
   const handleKeyProps = (e) => {
     if (e.key === 'Enter') {
-      onSendMessage()
+      onSendMessage({ text: messageText })
     }
+    sendWriteMessage({ chatId, isTyping: true })
   }
+
+  const handleKeyUp = () => {
+    setTimeout(() => {
+      sendWriteMessage({ chatId, isTyping: false })
+    }, 3500)
+  }
+
+  const { setCurrentModal } = useUiStore()
   return (
     <div className={styles.chatArea}>
       <div className={styles.chatAreaHeader}>
         <div className={styles.chatAreaTitle}></div>
+        <button onClick={handleChatPicture} className={styles.chatSetting}>
+          <MoreIcon />
+        </button>
+
         <div className={styles.chatAreaGroup}>
           <img
             className={styles.chatAreaProfile}
-            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3364143/download+%283%29+%281%29.png"
-            alt=""
+            src={chat?.preview?.url || DefaultAvatar}
+            alt={chat?.preview?._id}
           />
-          <img
-            className={styles.chatAreaProfile}
-            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3364143/download+%282%29.png"
-            alt=""></img>
-          <img
-            className={styles.chatAreaProfile}
-            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3364143/download+%2812%29.png"
-            alt=""
-          />
-          <span>+4</span>
         </div>
       </div>
       <MessageChat chatId={chatId} me={me} chat={chat} />
+      {chat?.isTyping && <p className={styles.typingMessage}></p>}
       <div className={styles.chatAreaFooter}>
         <VideoIcon />
         <ImageIcon />
         <AddIcon />
-        <PicturesIcon />
+        <button onClick={() => setCurrentModal('pictureSend')}>
+          <PicturesIcon />
+        </button>
+        <MainModal modalId={'pictureSend'}>
+          <SendPicture onSendMessage={onSendMessage} />
+        </MainModal>
         <input
-          onChange={(e) => setMessageText(e.target.value)}
+          onChange={handleOnChange}
           value={messageText}
           type="text"
           placeholder="Type something here..."
           onKeyDown={handleKeyProps}
+          onKeyUp={handleKeyUp}
         />
         <button>
           <EmojiIcon />
@@ -84,8 +113,11 @@ export const Dialog = ({ chatId }) => {
 }
 
 const MessageChat = ({ chatId, chat, me }) => {
+  const { setCurrentModal } = useUiStore()
   const elementRef = useRef(null)
   const [isVisible, setIsVisible] = useState(false)
+  const [modalImage, setModalImage] = useState('')
+  const [modalImageId, setModalImageId] = useState('')
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) =>
@@ -104,6 +136,13 @@ const MessageChat = ({ chatId, chat, me }) => {
   if (isVisible) {
     sendReadMessage({ chatId, messageId: chat._id })
   }
+
+  const handleClickImage = (imageUrl, imageId) => {
+    setModalImage(imageUrl)
+    setModalImageId(imageId)
+    setCurrentModal('checkImage')
+  }
+
   return (
     <div className={styles.chatAreaMain}>
       {chat?.messages?.map((message) => (
@@ -114,7 +153,7 @@ const MessageChat = ({ chatId, chat, me }) => {
           <div className={clsx(styles.chatMsgProfile)}>
             <img
               className={clsx(styles.chatMsgImg)}
-              src={message.sender.avatar.url}
+              src={message.sender?.avatar?.url || DefaultAvatar}
               alt=""
             />
             <div className={styles.chatMsgDate}>{formatDate(message.createdAt)}</div>
@@ -123,9 +162,23 @@ const MessageChat = ({ chatId, chat, me }) => {
             <div className={styles.chatMsgText}>
               <p>{message.text}</p>
             </div>
+            <div className={styles.chatMsgPicture}>
+              {message.images?.[0] &&
+                message.images.map((image) => (
+                  <button
+                    key={image._id}
+                    onClick={() => handleClickImage(image.url, image._id)}>
+                    <img src={image.url} alt={image.url} />
+                  </button>
+                ))}
+            </div>
+            <MainModal modalId={'checkImage'}>
+              <CheckImage imageId={modalImageId} imageUrl={modalImage} />
+            </MainModal>
           </div>
         </div>
       ))}
+
       <AlwaysScrollToBottom />
     </div>
   )

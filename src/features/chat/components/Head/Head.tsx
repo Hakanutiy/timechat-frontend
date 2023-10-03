@@ -1,9 +1,10 @@
 import clsx from 'clsx'
 
 import { DarkLightIcon, LogoIcon, SettingIcon } from '@/assets/icons'
-import { ModalWindow } from '@/components/Elements/ModalWindow'
+import DefaultAvatar from '@/assets/image/DefaultAvatar.png'
 import { MainModal } from '@/components/Modal'
 import { useGetMe } from '@/features/chat/api/getMe'
+import { LogOut } from '@/features/chat/components/LogOut/LogOut'
 import { Profile } from '@/features/chat/components/Profile'
 import { useTheme } from '@/hooks/useTheme'
 import { useUiStore } from '@/stores/ui'
@@ -38,13 +39,13 @@ export const Head = () => {
           <DarkLightIcon />
         </button>
         <div className={clsx(styles.settings)}>
-          <SettingIcon />
+          <LogOut />
         </div>
 
         <button onClick={() => setCurrentModal('profile')}>
           <img
             className={clsx(styles.userProfile, styles.accountProfile)}
-            src={data?.avatar?.url}
+            src={data?.avatar?.url || DefaultAvatar}
             alt="img-profile"></img>
         </button>
         <MainModal modalId={'profile'}>

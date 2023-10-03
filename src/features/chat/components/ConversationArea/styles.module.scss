@@ -21,7 +21,8 @@
     border-left: 4px solid var(--theme-color);
   }
   &Profile {
-    width: 44px;
+    min-width: 44px;
+    max-width: 44px;
     height: 44px;
     border-radius: 50%;
     object-fit: cover;
@@ -119,4 +120,26 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
+}
+
+.typingMessage::after {
+  content: '';
+  animation: typing 1s infinite;
+}
+
+@keyframes typing {
+  0% {
+    content: 'Typing';
+  }
+
+  50% {
+    content: 'Typing.';
+  }
+  75% {
+    content: 'Typing..';
+  }
+
+  100% {
+    content: 'Typing...';
+  }
 }

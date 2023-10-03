@@ -16,8 +16,9 @@
     background: var(--chat-header-bg);
   }
   &Profile {
-    width: 32px;
-    border-radius: 50%;
+    max-width: 32px;
+    height: 32px;
+    border-radius: 100%;
     object-fit: cover;
   }
   &Title {
@@ -80,6 +81,12 @@
   color: var(--chat-text-color);
 }
 
+.chatSetting {
+  width: 51px;
+  margin-left: auto;
+  margin-right: 10px;
+}
+
 .owner {
   flex-direction: row-reverse;
   .chatMsgContent {
@@ -91,6 +98,42 @@
     background-color: var(--theme-color);
     color: #fff;
     border-radius: 20px 20px 0 20px;
+  }
+
+  .chatAreaGroup {
+    flex-shrink: 0;
+    display: flex;
+    * {
+      border: 2px solid var(--theme-bg-color);
+    }
+    * + * {
+      margin-left: -5px;
+    }
+
+    span {
+      width: 32px;
+      height: 32px;
+      background-color: var(--button-bg-color);
+      color: var(--theme-color);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
+  .chatMsgPicture {
+    display: flex;
+    flex-direction: column;
+
+    max-width: 500px;
+    width: 100%;
+  }
+
+  .chatMsgPicture > * {
+    margin-top: 5px;
+    border-radius: 15px;
   }
   .chatMsgDate {
     left: auto;
@@ -140,5 +183,27 @@
   width: 100%;
   &::placeholder {
     color: var(--input-chat-color);
+  }
+}
+
+.typingMessage::after {
+  content: '';
+  animation: typing 1s infinite;
+}
+
+@keyframes typing {
+  0% {
+    content: 'Typing';
+  }
+
+  50% {
+    content: 'Typing.';
+  }
+  75% {
+    content: 'Typing..';
+  }
+
+  100% {
+    content: 'Typing...';
   }
 }

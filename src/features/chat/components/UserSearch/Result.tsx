@@ -1,9 +1,11 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import DefaultAvatar from '@/assets/image/DefaultAvatar.png'
 import { PaginationEndlessRibbon } from '@/components/Elements'
 import { useGetUsers } from '@/features/chat/api'
 import { useCreateChat } from '@/features/chat/api/createChat'
+import { useGetChats } from '@/features/chat/api/getChats'
 import { useSubscribeChat } from '@/features/chat/api/subscribeChat'
 
 import styles from './styles.module.scss'
@@ -37,10 +39,15 @@ export const Result = ({ search }) => {
 }
 
 const UserList = ({ users }) => {
+  const navigate = useNavigate()
   const createChat = useCreateChat()
+  const { data: chats } = useGetChats({
+    config: {},
+  })
 
-  useSubscribeChat()
   const onCreateChat = (userId) => {
+    const chat = chats.data.find((chat) => chat.senderIds.includes(userId))
+    if (chat) return navigate(`/chat/${chat._id}`)
     createChat({ senders: [userId] })
   }
 

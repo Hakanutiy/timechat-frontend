@@ -7,6 +7,24 @@
   overflow: auto;
 }
 
+.detailAreaAnimationIsTrue {
+  position: relative;
+  opacity: 0;
+  left: 100%;
+  animation: detailAreaAnimationIsTrue 0.3s forwards;
+}
+
+@keyframes detailAreaAnimationIsTrue {
+  0% {
+    opacity: 0;
+    left: 100%;
+  }
+  100% {
+    opacity: 1;
+    left: 0;
+  }
+}
+
 .detailAreaHeader {
   display: flex;
   flex-direction: column;
@@ -14,8 +32,8 @@
 
   .msgProfile {
     margin-right: 0;
-    width: 60px;
-    height: 60px;
+    max-width: 50px;
+    height: 40px;
     margin-bottom: 15px;
   }
 }
@@ -24,6 +42,7 @@
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 10px;
+  margin-top: 40px;
 }
 
 .detailSubtitle {
@@ -225,31 +244,10 @@
   margin-right: 10px;
 }
 
-.chatAreaGroup {
-  flex-shrink: 0;
-  display: flex;
-  * {
-    border: 2px solid var(--theme-bg-color);
-  }
-  * + * {
-    margin-left: -5px;
-  }
-
-  span {
-    width: 32px;
-    height: 32px;
-    background-color: var(--button-bg-color);
-    color: var(--theme-color);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 14px;
-    font-weight: 500;
-  }
-}
 .img {
-  border-radius: 100%;
+  border-radius: 50%;
+  min-width: 80px;
   width: 80px;
-  height: 60px;
+  height: 80px;
+  object-fit: cover;
 }

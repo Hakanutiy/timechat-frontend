@@ -30,8 +30,8 @@ export const UpdateImage = ({ setContent }) => {
             label={'avatar'}
             type="file"
             error={formState?.errors['avatar']}>
-            {(imageUrl) => (
-              <img className={styles.userImage} src={imageUrl} alt={'avatar'} />
+            {(imagesUrl) => (
+              <img className={styles.userImage} src={imagesUrl[0]} alt={'avatar'} />
             )}
           </InputFileField>
           <Button type={'submit'}>Изменить</Button>
